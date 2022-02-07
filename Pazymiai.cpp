@@ -18,3 +18,15 @@ int main()
 //      funkcija nuskaito mokinio egzamino rezultata
 //      funkcija apskaiciuoja metini rezultata
 // funkcija atspausdinimui
+
+// 2.
+
+//Papildyti pirmaja funckija su parametru (bool) arReikiaMedianos
+//Papildyti mokinio struktura su medianos fieldu
+//Pakeisti funckija
+//      Dadedti if kuris tikrina ar reikia medianos
+//      Atlikti skaiciavima su mediana
+//Pakeisti spausdinimo funkcija
+//      Patikrinti ar reikia spausdinti medianos stulpeli
+
+// 3. 
