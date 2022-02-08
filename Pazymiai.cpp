@@ -73,27 +73,18 @@ void ivedimas(studentas& data, bool ndSkaicius) {
         }
     }
     else {
-        bool stop = false;
+        int paz;
         string atsStop;
-        while (!stop) {
+        while (true) {
+            cout << "Iveskite " << data.pazymiuKiekis + 1 << " -a(-i) pazymi arba 0, kad sustoti: "; cin >> paz;
+            if (paz == 0) break;
             int* temp = new int[data.pazymiuKiekis];
-
-          
-
-            for (int x = 0; x < data.pazymiuKiekis; x++) 
-                temp[x] = data.pazymiai[x];
+            for (int x = 0; x < data.pazymiuKiekis; x++) temp[x] = data.pazymiai[x];
             delete[] data.pazymiai;
             data.pazymiuKiekis++;
             data.pazymiai = new int[data.pazymiuKiekis];
-
-            cout << data.pazymiuKiekis;
-
-            for (int x = 0; x < data.pazymiuKiekis - 1; x++) 
-                data.pazymiai[x] = temp[x];
-
-            cout << "Iveskite " << data.pazymiuKiekis + 1 << " -a(-i) pazymi: "; cin >> data.pazymiai[data.pazymiuKiekis - 1];
-            cout << "Ar notire sustoti (taip/ne): "; cin >> atsStop;
-            if (atsStop == "taip") stop = true; // pekeisti i skaiciu
+            for (int x = 0; x < data.pazymiuKiekis - 1; x++) data.pazymiai[x] = temp[x];
+            data.pazymiai[data.pazymiuKiekis - 1] = paz;
         }
     }
     cout << "iveskite studento egzamino pazymi: "; cin >> data.egzaminas;
