@@ -1,10 +1,13 @@
 ﻿#include <string>
 #include <iomanip>
 #include <iostream>
+#include <cmath>
 
 using std::cout;
 using std::cin;
+using std::endl;
 using std::string;
+
 
 struct studentas {
     string vardas = "";
@@ -15,59 +18,64 @@ struct studentas {
     double rezultatas = 0;
 };
 
-void ivedimas(studentas& data);
-void isvedimas(studentas& data);
+void ivedimas(studentas& data, bool mediana);
+void isvedimas(studentas& data, bool mediana);
 
 int main()
 {
-    setlocale(LC_ALL, "Lithuanian");
-    int studentųKiekis;
-    cout << "Įveskite studentų kiekį: "; cin >> studentųKiekis;
-    studentas* studentai = new studentas[studentųKiekis];
+    int studentuKiekis = 0;
+    string atsMediana;
+    bool mediana = false;
 
-    for (studentas* studentas = studentai; studentas < studentai + studentųKiekis; studentas++) ivedimas(*studentas);
-    for (studentas* studentas = studentai; studentas < studentai + studentųKiekis; studentas++) isvedimas(*studentas);
+    cout << "Iveskite studentu kieki: "; cin >> studentuKiekis;
+    studentas* studentai = new studentas[studentuKiekis];
+    cout << "Ar notire naudoti mediana vietoje vidurkio (taip/ne): "; cin >> atsMediana;
+    
+    if (atsMediana == "taip") 
+        mediana = true;
+    else 
+        cout << "Atsakymas bus su vidurkiu." << endl;
+
+
+    for (studentas* studentas = studentai; studentas < studentai + studentuKiekis; studentas++) 
+        ivedimas(*studentas, mediana);
+
+    if(mediana)
+        cout << endl << std::setw(20) << "Pavarde" << std::setw(20) << "Vardas" << std::setw(20) << "Galutinis (Med.)" << endl;
+    else
+        cout << endl << std::setw(20) << "Pavarde" << std::setw(20) << "Vardas" << std::setw(20) << "Galutinis (Vid.)" << endl;
+    for (studentas* studentas = studentai; studentas < studentai + studentuKiekis; studentas++) 
+        isvedimas(*studentas, mediana);
     
 }
 
-void ivedimas(studentas& data) {
-    cout << "Įveskite studento vardą: "; cin >> data.vardas;
-    cout << "Įveskite studento pavardę: "; cin >> data.pavarde;
-    cout << "Įveskite studento namų darbų kiekį: "; cin >> data.pazymiuKiekis;
+void ivedimas(studentas& data, bool mediana) {
+    cout << "Iveskite studento pavarde: "; cin >> data.pavarde;
+    cout << "Iveskite studento varda: "; cin >> data.vardas;
+    cout << "Iveskite studento namu darbu kieki: "; cin >> data.pazymiuKiekis;
     data.pazymiai = new int[data.pazymiuKiekis];
     for (int x = 0; x < data.pazymiuKiekis; x++) {
-        cout << "Įveskite " << x + 1 << " -ą(-į) pažymį"; cin >> data.pazymiai[x];
+        cout << "Iveskite " << x + 1 << " -a(-i) pazymi: "; cin >> data.pazymiai[x];
     }
-    cout << "Įveskite studento egzamino pažymį: "; cin >> data.egzaminas;
+    cout << "iveskite studento egzamino pazymi: "; cin >> data.egzaminas;
 }
 
-void isvedimas(studentas& data) {
+void isvedimas(studentas& data, bool mediana) {
     cout << std::setw(20) << data.vardas << std::setw(20) << data.pavarde;
-    for (int x = 0; x < data.pazymiuKiekis; x++) data.rezultatas += data.pazymiai[x];
-    data.rezultatas = data.rezultatas / data.pazymiuKiekis;
-    cout << std::setw(20) << data.rezultatas;
+    if (mediana) {
+        for (int x = 0; x < data.pazymiuKiekis; x++)
+            for (int y = 0; y < data.pazymiuKiekis; y++)
+                if (data.pazymiai[x] > data.pazymiai[y])
+                    std::swap(data.pazymiai[x], data.pazymiai[y]);
+        if (data.pazymiuKiekis % 2 !=  0)
+            data.rezultatas = (double)data.pazymiai[data.pazymiuKiekis / 2];
+        else
+            data.rezultatas = (double)(data.pazymiai[(data.pazymiuKiekis - 1) / 2] + data.pazymiai[data.pazymiuKiekis / 2]) / 2.0;
+    }
+    else {
+        for (int x = 0; x < data.pazymiuKiekis; x++) data.rezultatas += data.pazymiai[x] * 1.0;
+        data.rezultatas = data.rezultatas / data.pazymiuKiekis;
+    }
+    cout << std::setw(20) << data.rezultatas << endl;
 }
 
-// 1. 
-
-// susikurti struktura mokiniui
-// funkcija sukasi tiek kiek yra mokiniu
-// funckija nuskaityti duomenis
-//      funkcija nuskaito varda pavarde
-//      funkcija nuskaito mokinio nd skaiciu
-//      funkcija nuskaito mokinio n pazymius
-//      funkcija nuskaito mokinio egzamino rezultata
-//      funkcija apskaiciuoja metini rezultata
-// funkcija atspausdinimui
-
-// 2.
-
-//Papildyti pirmaja funckija su parametru (bool) arReikiaMedianos
-//Papildyti mokinio struktura su medianos fieldu
-//Pakeisti funckija
-//      Dadedti if kuris tikrina ar reikia medianos
-//      Atlikti skaiciavima su mediana
-//Pakeisti spausdinimo funkcija
-//      Patikrinti ar reikia spausdinti medianos stulpeli
-
-// 3. 
