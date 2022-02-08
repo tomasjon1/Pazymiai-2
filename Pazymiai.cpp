@@ -16,9 +16,11 @@ struct studentas {
 };
 
 void ivedimas(studentas& data);
+void isvedimas(studentas& data);
 
 int main()
 {
+    setlocale(LC_ALL, "Lithuanian");
     int studentųKiekis;
     cout << "Įveskite studentų kiekį: "; cin >> studentųKiekis;
     studentas* studentai = new studentas[studentųKiekis];
