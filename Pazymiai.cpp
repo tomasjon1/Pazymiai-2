@@ -1,9 +1,22 @@
-
+#include <string>
+#include <iomanip>
 #include <iostream>
+
+using std::cout;
+using std::cin;
+using std::string;
+
+struct studentas {
+    string vardas = "";
+    string pavarde = "";
+    int *pazymiai;
+    int egzaminas;
+    double rezultatas;
+};
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    cout << "Hello World!\n";
 }
 
 
