@@ -10,27 +10,40 @@ struct studentas {
     string vardas = "";
     string pavarde = "";
     int *pazymiai;
-    int pazymiuKieks;
+    int pazymiuKiekis;
     int egzaminas;
-    double rezultatas;
+    double rezultatas = 0;
 };
 
 void ivedimas(studentas& data);
 
 int main()
 {
-    cout << "Hello World!\n";
+    int studentųKiekis;
+    cout << "Įveskite studentų kiekį: "; cin >> studentųKiekis;
+    studentas* studentai = new studentas[studentųKiekis];
+
+    for (studentas* studentas = studentai; studentas < studentai + studentųKiekis; studentas++) ivedimas(*studentas);
+    for (studentas* studentas = studentai; studentas < studentai + studentųKiekis; studentas++) isvedimas(*studentas);
+    
 }
 
 void ivedimas(studentas& data) {
     cout << "Įveskite studento vardą: "; cin >> data.vardas;
     cout << "Įveskite studento pavardę: "; cin >> data.pavarde;
-    cout << "Įveskite studento namų darbų kiekį: "; cin >> data.pazymiuKieks;
-    data.pazymiai = new int[100000];
-    for (int x = 1; x <= data.pazymiuKieks; x++) {
-        cout << "Įveskite " << x << " -ą(-į) pažymį"; cin >> data.pazymiai[x];
+    cout << "Įveskite studento namų darbų kiekį: "; cin >> data.pazymiuKiekis;
+    data.pazymiai = new int[data.pazymiuKiekis];
+    for (int x = 0; x < data.pazymiuKiekis; x++) {
+        cout << "Įveskite " << x + 1 << " -ą(-į) pažymį"; cin >> data.pazymiai[x];
     }
     cout << "Įveskite studento egzamino pažymį: "; cin >> data.egzaminas;
+}
+
+void isvedimas(studentas& data) {
+    cout << std::setw(20) << data.vardas << std::setw(20) << data.pavarde;
+    for (int x = 0; x < data.pazymiuKiekis; x++) data.rezultatas += data.pazymiai[x];
+    data.rezultatas = data.rezultatas / data.pazymiuKiekis;
+    cout << std::setw(20) << data.rezultatas;
 }
 
 // 1. 
