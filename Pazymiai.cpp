@@ -18,7 +18,7 @@ struct studentas {
     double rezultatas = 0;
 };
 
-void ivedimas(studentas& data, bool ndSkaicius);
+void ivedimas(studentas& data, bool ndSkaicius, bool generavimas);
 void isvedimas(studentas& data, bool mediana);
 
 int main()
@@ -26,13 +26,16 @@ int main()
     int studentuKiekis = 0;
     string atsMediana;
     string atsNdSkaicius;
+    string atsGeneravimas;
     bool mediana = false;
     bool ndSkaicius = false;
+    bool generavimas = false;
 
     cout << "Iveskite studentu kieki: "; cin >> studentuKiekis;
     studentas* studentai = new studentas[studentuKiekis];
     cout << "Ar notire naudoti mediana vietoje vidurkio (taip/ne): "; cin >> atsMediana;
-    cout << "Ar notire namu darbu skaiciai yra zinomi (taip/ne): "; cin >> atsNdSkaicius;
+    cout << "Ar namu darbu skaiciai yra zinomi (taip/ne): "; cin >> atsNdSkaicius;
+    cout << "Ar notire namu darbu pazymius generuoti automatiskai (taip/ne): "; cin >> atsGeneravimas;
     
     if (atsMediana == "taip") {
         cout << "Atsakymas bus su mediana." << endl;
@@ -43,14 +46,21 @@ int main()
 
     if (atsNdSkaicius == "taip") {
         cout << "Namu darbu skaiciai yra zinomi" << endl;
-        atsNdSkaicius = true;
+        ndSkaicius = true;
     }
     else
         cout << "Namu darbu skaiciai yra nezinomi" << endl;
 
+    if (atsGeneravimas == "taip") {
+        cout << "Namu darbu pazymiai bus genereruojami" << endl;
+        generavimas = true;
+    }
+    else
+        cout << "Namudarbu pazymiai ne bus genereruojami" << endl;
+
 
     for (studentas* studentas = studentai; studentas < studentai + studentuKiekis; studentas++) 
-        ivedimas(*studentas, ndSkaicius);
+        ivedimas(*studentas, ndSkaicius, generavimas);
 
     if(mediana)
         cout << endl << std::setw(20) << "Pavarde" << std::setw(20) << "Vardas" << std::setw(20) << "Galutinis (Med.)" << endl;
@@ -61,15 +71,29 @@ int main()
     
 }
 
-void ivedimas(studentas& data, bool ndSkaicius) {
+void ivedimas(studentas& data, bool ndSkaicius, bool generavimas) {
+    cout << endl;
     cout << "Iveskite studento pavarde: "; cin >> data.pavarde;
     cout << "Iveskite studento varda: "; cin >> data.vardas;
 
     if(ndSkaicius){
         cout << "Iveskite studento namu darbu kieki: "; cin >> data.pazymiuKiekis;
+        cout << endl;
+
         data.pazymiai = new int[data.pazymiuKiekis];
-        for (int x = 0; x < data.pazymiuKiekis; x++) {
-            cout << "Iveskite " << x + 1 << " -a(-i) pazymi: "; cin >> data.pazymiai[x];
+        if (generavimas) {
+            for (int x = 0; x < data.pazymiuKiekis; x++) {
+                data.pazymiai[x] = rand() % 10 + 1;
+                cout << "Ivestas " << x + 1 << " pazimys bus: " << data.pazymiai[x] << endl;
+            }
+            data.egzaminas = rand() % 10 + 1;
+            cout << "Ivestas studento egzamino pazymis bus: " << data.egzaminas << endl;
+        }
+        else {
+            for (int x = 0; x < data.pazymiuKiekis; x++) {
+                cout << "Iveskite " << x + 1 << " -a(-i) pazymi: "; cin >> data.pazymiai[x];
+            }
+            cout << "iveskite studento egzamino pazymi: "; cin >> data.egzaminas;
         }
     }
     else {
@@ -86,8 +110,9 @@ void ivedimas(studentas& data, bool ndSkaicius) {
             for (int x = 0; x < data.pazymiuKiekis - 1; x++) data.pazymiai[x] = temp[x];
             data.pazymiai[data.pazymiuKiekis - 1] = paz;
         }
+        cout << "iveskite studento egzamino pazymi: "; cin >> data.egzaminas;
     }
-    cout << "iveskite studento egzamino pazymi: "; cin >> data.egzaminas;
+    cout << endl;
 }
 
 void isvedimas(studentas& data, bool mediana) {
@@ -114,3 +139,5 @@ void isvedimas(studentas& data, bool mediana) {
 //PATVARKYTI FINAL REZ SKAICIAVIMA
 
 //ar kai yra zinomas namu darbu skaicius, jis viesiems yra vienodas?
+
+//ar jei pazymiai yra generuojami automatiskai yra fixed nd skaicius
