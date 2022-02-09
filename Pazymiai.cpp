@@ -38,38 +38,33 @@ int main()
     cout << "Ar notire naudoti mediana vietoje vidurkio (taip/ne): "; cin >> atsMediana;
     cout << "Ar namu darbu skaiciai yra zinomi (taip/ne): "; cin >> atsNdSkaicius;
     cout << "Ar notire namu darbu pazymius generuoti automatiskai (taip/ne): "; cin >> atsGeneravimas;
-    
+    cout << endl;
+
     if (atsMediana == "taip") {
         cout << "Atsakymas bus su mediana." << endl;
         mediana = true;
     }
-    else 
-        cout << "Atsakymas bus su vidurkiu." << endl;
+    else  cout << "Atsakymas bus su vidurkiu." << endl;
 
     if (atsNdSkaicius == "taip") {
         cout << "Namu darbu skaiciai yra zinomi" << endl;
         ndSkaicius = true;
     }
-    else
-        cout << "Namu darbu skaiciai yra nezinomi" << endl;
+    else cout << "Namu darbu skaiciai yra nezinomi" << endl;
 
     if (atsGeneravimas == "taip") {
         cout << "Namu darbu pazymiai bus genereruojami" << endl;
         generavimas = true;
     }
-    else
-        cout << "Namudarbu pazymiai ne bus genereruojami" << endl;
+    else cout << "Namudarbu pazymiai ne bus genereruojami" << endl;
 
 
-    for (studentas* studentas = studentai; studentas < studentai + studentuKiekis; studentas++) 
-        ivedimas(*studentas, ndSkaicius, generavimas);
+    for (studentas* studentas = studentai; studentas < studentai + studentuKiekis; studentas++) ivedimas(*studentas, ndSkaicius, generavimas);
 
-    if(mediana)
-        cout << endl << std::setw(20) << "Pavarde" << std::setw(20) << "Vardas" << std::setw(20) << "Galutinis (Med.)" << endl;
-    else
-        cout << endl << std::setw(20) << "Pavarde" << std::setw(20) << "Vardas" << std::setw(20) << "Galutinis (Vid.)" << endl;
-    for (studentas* studentas = studentai; studentas < studentai + studentuKiekis; studentas++) 
-        isvedimas(*studentas, mediana);
+    if(mediana) cout << std::setw(20) << "PAVARDE" << std::setw(20) << "VARDAS" << std::setw(20) << "GALUTINS (Med.)" << endl;
+    else        cout << std::setw(20) << "PAVARDE" << std::setw(20) << "VARDAS" << std::setw(20) << "GALUTINS (Vid.)" << endl;
+
+    for (studentas* studentas = studentai; studentas < studentai + studentuKiekis; studentas++) isvedimas(*studentas, mediana);
 }
 
 void ivedimas(studentas& data, bool ndSkaicius, bool generavimas) {
@@ -124,7 +119,6 @@ void ivedimas(studentas& data, bool ndSkaicius, bool generavimas) {
         }
     }
     cout << endl;
-
 }
 
 void isvedimas(studentas& data, bool mediana) {
@@ -133,13 +127,13 @@ void isvedimas(studentas& data, bool mediana) {
     if (mediana) {
         std::sort(data.pazymiai, data.pazymiai + data.pazymiuKiekis);
         if (data.pazymiuKiekis % 2 !=  0)
-            data.rezultatas = (double)data.pazymiai[data.pazymiuKiekis / 2];
+            data.rezultatas = 0.4 * (double)data.pazymiai[data.pazymiuKiekis / 2] + 0.6 * data.egzaminas;
         else
-            data.rezultatas = (double)(data.pazymiai[(data.pazymiuKiekis - 1) / 2] + data.pazymiai[data.pazymiuKiekis / 2]) / 2.0;
+            data.rezultatas = 0.4 * ((double)(data.pazymiai[(data.pazymiuKiekis - 1) / 2] + data.pazymiai[data.pazymiuKiekis / 2]) / 2.0) + 0.6 * data.egzaminas;
     }
     else {
         for (int x = 0; x < data.pazymiuKiekis; x++) data.rezultatas += data.pazymiai[x] * 1.0;
-        data.rezultatas = data.rezultatas / data.pazymiuKiekis;
+        data.rezultatas = (0.4 * (data.rezultatas / data.pazymiuKiekis)) + 0.6 * data.egzaminas;
     }
 
     cout << std::setw(20) << data.rezultatas << endl;
@@ -154,6 +148,3 @@ void nezinomuNdPazIvedimas(studentas& data, int paz) {
     for (int x = 0; x < data.pazymiuKiekis - 1; x++) data.pazymiai[x] = temp[x];
     data.pazymiai[data.pazymiuKiekis - 1] = paz;
 }
-
-//PATVARKYTI FINAL REZ SKAICIAVIMA
-//SUTVARKYT KODA IR PADARYTI GRAZIUS OUTPUTUS
