@@ -2,6 +2,7 @@
 #include <iomanip>
 #include <iostream>
 #include <cmath>
+#include <algorithm>
 
 using std::cout;
 using std::cin;
@@ -20,6 +21,7 @@ struct studentas {
 
 void ivedimas(studentas& data, bool ndSkaicius, bool generavimas);
 void isvedimas(studentas& data, bool mediana);
+void nezinomuNdPazIvedimas(studentas& data, int paz);
 
 int main()
 {
@@ -68,7 +70,6 @@ int main()
         cout << endl << std::setw(20) << "Pavarde" << std::setw(20) << "Vardas" << std::setw(20) << "Galutinis (Vid.)" << endl;
     for (studentas* studentas = studentai; studentas < studentai + studentuKiekis; studentas++) 
         isvedimas(*studentas, mediana);
-    
 }
 
 void ivedimas(studentas& data, bool ndSkaicius, bool generavimas) {
@@ -101,32 +102,23 @@ void ivedimas(studentas& data, bool ndSkaicius, bool generavimas) {
             string atsStop;
             while (true) {
                 cout << "Spauskite enter sugeneruoti " << data.pazymiuKiekis + 1 << " -a(-i) pazymi arba bet koki kita klavisa ir enter, kad sustoti: " << endl;
-                if (cin.get() != '\n') break;
+                if (cin.get() != '\n') 
+                    break;
                 paz = rand() % 10 + 1;
                 cout << "Sugeneruotas pazymis yra: " << paz << endl;
-                int* temp = new int[data.pazymiuKiekis];
-                for (int x = 0; x < data.pazymiuKiekis; x++) temp[x] = data.pazymiai[x];
-                delete[] data.pazymiai;
-                data.pazymiuKiekis++;
-                data.pazymiai = new int[data.pazymiuKiekis];
-                for (int x = 0; x < data.pazymiuKiekis - 1; x++) data.pazymiai[x] = temp[x];
-                data.pazymiai[data.pazymiuKiekis - 1] = paz;
+                nezinomuNdPazIvedimas(data, paz);
             }
-            cout << "iveskite studento egzamino pazymi: "; cin >> data.egzaminas;
+            data.egzaminas = rand() % 10 + 1;
+            cout << "Ivestas studento egzamino pazymis bus: " << data.egzaminas << endl;
         }
         else {
             int paz;
             string atsStop;
             while (true) {
                 cout << "Iveskite " << data.pazymiuKiekis + 1 << " -a(-i) pazymi arba 0, kad sustoti: "; cin >> paz;
-                if (paz == 0) break;
-                int* temp = new int[data.pazymiuKiekis];
-                for (int x = 0; x < data.pazymiuKiekis; x++) temp[x] = data.pazymiai[x];
-                delete[] data.pazymiai;
-                data.pazymiuKiekis++;
-                data.pazymiai = new int[data.pazymiuKiekis];
-                for (int x = 0; x < data.pazymiuKiekis - 1; x++) data.pazymiai[x] = temp[x];
-                data.pazymiai[data.pazymiuKiekis - 1] = paz;
+                if (paz == 0) 
+                    break;
+                nezinomuNdPazIvedimas(data, paz);
             }
             cout << "iveskite studento egzamino pazymi: "; cin >> data.egzaminas;
         }
@@ -139,10 +131,7 @@ void isvedimas(studentas& data, bool mediana) {
     cout << std::setw(20) << data.vardas << std::setw(20) << data.pavarde;
 
     if (mediana) {
-        for (int x = 0; x < data.pazymiuKiekis; x++)
-            for (int y = 0; y < data.pazymiuKiekis; y++)
-                if (data.pazymiai[x] > data.pazymiai[y])
-                    std::swap(data.pazymiai[x], data.pazymiai[y]);
+        std::sort(data.pazymiai, data.pazymiai + data.pazymiuKiekis);
         if (data.pazymiuKiekis % 2 !=  0)
             data.rezultatas = (double)data.pazymiai[data.pazymiuKiekis / 2];
         else
@@ -156,8 +145,15 @@ void isvedimas(studentas& data, bool mediana) {
     cout << std::setw(20) << data.rezultatas << endl;
 }
 
+void nezinomuNdPazIvedimas(studentas& data, int paz) {
+    int* temp = new int[data.pazymiuKiekis];
+    for (int x = 0; x < data.pazymiuKiekis; x++) temp[x] = data.pazymiai[x];
+    delete[] data.pazymiai;
+    data.pazymiuKiekis++;
+    data.pazymiai = new int[data.pazymiuKiekis];
+    for (int x = 0; x < data.pazymiuKiekis - 1; x++) data.pazymiai[x] = temp[x];
+    data.pazymiai[data.pazymiuKiekis - 1] = paz;
+}
+
 //PATVARKYTI FINAL REZ SKAICIAVIMA
-
-//ar kai yra zinomas namu darbu skaicius, jis viesiems yra vienodas?
-
-//ar jei pazymiai yra generuojami automatiskai yra fixed nd skaicius
+//SUTVARKYT KODA IR PADARYTI GRAZIUS OUTPUTUS
