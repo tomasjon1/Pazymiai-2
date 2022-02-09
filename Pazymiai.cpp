@@ -79,7 +79,6 @@ void ivedimas(studentas& data, bool ndSkaicius, bool generavimas) {
     if(ndSkaicius){
         cout << "Iveskite studento namu darbu kieki: "; cin >> data.pazymiuKiekis;
         cout << endl;
-
         data.pazymiai = new int[data.pazymiuKiekis];
         if (generavimas) {
             for (int x = 0; x < data.pazymiuKiekis; x++) {
@@ -97,22 +96,43 @@ void ivedimas(studentas& data, bool ndSkaicius, bool generavimas) {
         }
     }
     else {
-        int paz;
-        string atsStop;
-        while (true) {
-            cout << "Iveskite " << data.pazymiuKiekis + 1 << " -a(-i) pazymi arba 0, kad sustoti: "; cin >> paz;
-            if (paz == 0) break;
-            int* temp = new int[data.pazymiuKiekis];
-            for (int x = 0; x < data.pazymiuKiekis; x++) temp[x] = data.pazymiai[x];
-            delete[] data.pazymiai;
-            data.pazymiuKiekis++;
-            data.pazymiai = new int[data.pazymiuKiekis];
-            for (int x = 0; x < data.pazymiuKiekis - 1; x++) data.pazymiai[x] = temp[x];
-            data.pazymiai[data.pazymiuKiekis - 1] = paz;
+        if (generavimas) {
+            int paz;
+            string atsStop;
+            while (true) {
+                cout << "Spauskite enter sugeneruoti " << data.pazymiuKiekis + 1 << " -a(-i) pazymi arba bet koki kita klavisa ir enter, kad sustoti: " << endl;
+                if (cin.get() != '\n') break;
+                paz = rand() % 10 + 1;
+                cout << "Sugeneruotas pazymis yra: " << paz << endl;
+                int* temp = new int[data.pazymiuKiekis];
+                for (int x = 0; x < data.pazymiuKiekis; x++) temp[x] = data.pazymiai[x];
+                delete[] data.pazymiai;
+                data.pazymiuKiekis++;
+                data.pazymiai = new int[data.pazymiuKiekis];
+                for (int x = 0; x < data.pazymiuKiekis - 1; x++) data.pazymiai[x] = temp[x];
+                data.pazymiai[data.pazymiuKiekis - 1] = paz;
+            }
+            cout << "iveskite studento egzamino pazymi: "; cin >> data.egzaminas;
         }
-        cout << "iveskite studento egzamino pazymi: "; cin >> data.egzaminas;
+        else {
+            int paz;
+            string atsStop;
+            while (true) {
+                cout << "Iveskite " << data.pazymiuKiekis + 1 << " -a(-i) pazymi arba 0, kad sustoti: "; cin >> paz;
+                if (paz == 0) break;
+                int* temp = new int[data.pazymiuKiekis];
+                for (int x = 0; x < data.pazymiuKiekis; x++) temp[x] = data.pazymiai[x];
+                delete[] data.pazymiai;
+                data.pazymiuKiekis++;
+                data.pazymiai = new int[data.pazymiuKiekis];
+                for (int x = 0; x < data.pazymiuKiekis - 1; x++) data.pazymiai[x] = temp[x];
+                data.pazymiai[data.pazymiuKiekis - 1] = paz;
+            }
+            cout << "iveskite studento egzamino pazymi: "; cin >> data.egzaminas;
+        }
     }
     cout << endl;
+
 }
 
 void isvedimas(studentas& data, bool mediana) {
