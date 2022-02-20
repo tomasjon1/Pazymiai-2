@@ -10,8 +10,8 @@ Norint pasinaudoti šia programa, Jums reikia įsijungti terminal. Su komanda cd
 
 ### Paleidus programą Jums reikės:<br>
 - Pasirinkti ar norite matyti studentų pažymių medianas.
-- Pasirinkti ar studentų skaičius yra fiksuotas, ar turėti galimybę baigti įvesti studentus duomenų įvedimo metu.
-- Pasirinke matyti automatiškai sugeneruotus duomenis, turėsite įvesti studentų vardus ir pavardes bei namų darbų kiekį vienam studentui.
+- Pasirinkti ar studentų skaičius yra fiksuotas, su galimybė nutraukti studentų duomenų suvedimą.
+- Pasirinkti ar norite matyti automatiškai sugeneruotus duomenis, turėsite įvesti studentų vardus ir pavardes bei namų darbų kiekį vienam studentui.
 - Pasirinkus įvesti duomenis patiems, turėsite įvesti šįuos duomenis: studentų vardus, pavardes, jų namų darbų kiekį, pažymius ir egzamino pažymį).
 
 (Pažymių vidurkis sudaromis vadovaujantis šia formule: galutinis = 0.4 * vidurkis + 0.6 * egzaminas)<br>
