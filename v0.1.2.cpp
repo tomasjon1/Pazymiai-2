@@ -23,7 +23,6 @@ struct studentas {
 
 void ivedimas(studentas& data, bool generavimas);
 void isvedimas(studentas& data, bool mediana);
-void nezinomuNdPazIvedimas(studentas& data, int paz);
 int ivestoSkaiciausPatikrinimas();
 string atsakymoIvedinimoPatikrinimas();
 bool pazymioPatikrinimas(int n);
@@ -31,6 +30,8 @@ int ivestiPazymi();
 
 int main()
 {
+    srand(time(NULL));
+
     int studentuKiekis = 0;
     string atsMediana;
     string atsGeneravimas;
@@ -88,7 +89,6 @@ int main()
         }
     }
      
-
     if(mediana) cout << std::setw(20) << "VARDAS" << std::setw(20) << "PAVARDE" << std::setw(20) << "GALUTINS (Med.)" << endl;
     else        cout << std::setw(20) << "VARDAS" << std::setw(20) << "PAVARDE" << std::setw(20) << "GALUTINS (Vid.)" << endl;
 
@@ -117,7 +117,6 @@ void ivedimas(studentas& data, bool generavimas) {
             }
             cout << "iveskite studento egzamino pazymi: "; data.egzaminas = ivestiPazymi();
         }
-   
     cout << endl;
 }
 
@@ -135,18 +134,9 @@ void isvedimas(studentas& data, bool mediana) {
         for (int x = 0; x < data.pazymiuKiekis; x++) data.rezultatas += data.pazymiai[x] * 1.0;
         data.rezultatas = (0.4 * (data.rezultatas / data.pazymiuKiekis)) + 0.6 * data.egzaminas;
     }
-
     cout << std::setw(20) << data.rezultatas << endl;
-}
 
-void nezinomuNdPazIvedimas(studentas& data, int paz) {
-    int* temp = new int[data.pazymiuKiekis];
-    for (int x = 0; x < data.pazymiuKiekis; x++) temp[x] = data.pazymiai[x];
     delete[] data.pazymiai;
-    data.pazymiuKiekis++;
-    data.pazymiai = new int[data.pazymiuKiekis];
-    for (int x = 0; x < data.pazymiuKiekis - 1; x++) data.pazymiai[x] = temp[x];
-    data.pazymiai[data.pazymiuKiekis - 1] = paz;
 }
 
 int ivestoSkaiciausPatikrinimas()
