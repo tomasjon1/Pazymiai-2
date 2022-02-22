@@ -30,7 +30,13 @@ int ivestiPazymi();
 
 int main()
 {
-    srand(time(NULL));
+   // TO DO:
+   //   1. Make name and last name generator with gender detection
+   //   2. Code file creation with just the header of n-size ND
+   //   3. Code full file creation with 2 last steps
+
+
+   /* srand(time(NULL));
 
     int studentuKiekis = 0;
     string atsMediana;
@@ -92,7 +98,7 @@ int main()
     if(mediana) cout << std::setw(20) << "VARDAS" << std::setw(20) << "PAVARDE" << std::setw(20) << "GALUTINS (Med.)" << endl;
     else        cout << std::setw(20) << "VARDAS" << std::setw(20) << "PAVARDE" << std::setw(20) << "GALUTINS (Vid.)" << endl;
 
-    for (studentas studentas : studentai) isvedimas(studentas, mediana);
+    for (studentas studentas : studentai) isvedimas(studentas, mediana);*/
 
     
 }
