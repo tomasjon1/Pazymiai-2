@@ -32,6 +32,11 @@ int main()
 {
    // TO DO:
    //   1. Make name and last name generator with gender detection
+   //       1.1 3 arrays (names, v.lastname, m.lastname)
+   //       1.2 get name, and check last letter
+   //       1.3 if it ends with s
+   //       1.4 get v.lastname
+   //       1.5 oposite m.lastname
    //   2. Code file creation with just the header of n-size ND
    //   3. Code full file creation with 2 last steps
 
