@@ -93,6 +93,8 @@ int main()
     else        cout << std::setw(20) << "VARDAS" << std::setw(20) << "PAVARDE" << std::setw(20) << "GALUTINS (Vid.)" << endl;
 
     for (studentas studentas : studentai) isvedimas(studentas, mediana);
+
+    
 }
 
 void ivedimas(studentas& data, bool generavimas) {

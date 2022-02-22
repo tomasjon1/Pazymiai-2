@@ -103,6 +103,8 @@ int main()
     else        cout << std::setw(20) << "PAVARDE" << std::setw(20) << "VARDAS" << std::setw(20) << "GALUTINS (Vid.)" << endl;
 
     for (studentas* studentas = studentai; studentas < studentai + studentuKiekis; studentas++) isvedimas(*studentas, mediana);
+
+    delete[] studentai;
 }
 
 void ivedimas(studentas& data, bool ndSkaicius, bool generavimas) {
