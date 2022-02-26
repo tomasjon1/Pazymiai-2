@@ -30,7 +30,7 @@ int ivestoSkaiciausPatikrinimas();
 string atsakymoIvedinimoPatikrinimas();
 bool pazymioPatikrinimas(int n);
 int ivestiPazymi();
-void skatiymasIsFailo(ifstream& fin, vector<string>& length, vector<studentas>& studentai);
+void skaitymasIsFailo(ifstream& fin, vector<string>& length, vector<studentas>& studentai);
 
 int main()
 {
@@ -58,7 +58,7 @@ int main()
 
         vector<string> antrastineEilute;
         std::ifstream fin("studentai.txt");
-        skatiymasIsFailo(fin, antrastineEilute, studentai);
+        skaitymasIsFailo(fin, antrastineEilute, studentai);
 
     }
     else
@@ -83,7 +83,7 @@ int main()
             cout << "Namu darbu pazymiai bus genereruojami" << endl;
             generavimas = true;
         }
-        else cout << "Namudarbu pazymiai ne bus genereruojami" << endl;
+        else cout << "Namudarbu pazymiai nebus genereruojami" << endl;
 
 
         if (studentuSkaicius)
@@ -110,7 +110,7 @@ int main()
         }
     }
 
-    std::sort(studentai.begin(), studentai.end(), [](studentas& a, studentas& b){ return a.vardas < b.vardas; });
+o    std::sort(studentai.begin(), studentai.end(), [](studentas& a, studentas& b){ return a.vardas < b.vardas; });
      
     if(mediana) fout << std::setw(20) << "VARDAS" << std::setw(20) << "PAVARDE" << std::setw(20) << "GALUTINS (Med.)" << endl;
     else        fout << std::setw(20) << "VARDAS" << std::setw(20) << "PAVARDE" << std::setw(20) << "GALUTINS (Vid.)" << endl;
@@ -130,10 +130,10 @@ void ivedimas(studentas& data, bool generavimas) {
         if (generavimas) {
             for (int x = 0; x < data.pazymiuKiekis; x++) {
                 data.pazymiai.push_back(rand() % 10 + 1);
-                cout << "Ivestas " << x + 1 << " pazimys bus: " << data.pazymiai[x] << endl;
+                cout << "Ivestas " << x + 1 << " pazymyss bus: " << data.pazymiai[x] << endl;
             }
             data.egzaminas = rand() % 10 + 1;
-            cout << "Ivestas studento egzamino pazymis bus: " << data.egzaminas << endl;
+            cout << "Ivestas studento egzamino pazymys bus: " << data.egzaminas << endl;
         }
         else {
             for (int x = 0; x < data.pazymiuKiekis; x++) {
@@ -185,7 +185,7 @@ string atsakymoIvedinimoPatikrinimas() {
         if (ats != "taip" && ats != "ne")
         {
             cout << ats;
-            cout << "Ataskymas turi buti (taip arba ne)" << endl;
+            cout << "Atsakymas turi buti (taip arba ne)" << endl;
         }
     } while (ats != "taip" && ats != "ne");
     return ats;
@@ -211,7 +211,7 @@ int ivestiPazymi()
     }
 }
 
-void skatiymasIsFailo(ifstream& fin, vector<string>& length, vector<studentas>& studentai)
+void skaitymasIsFailo(ifstream& fin, vector<string>& length, vector<studentas>& studentai)
 {
     string t;
     while ((fin.peek() != '\n') && (fin >> t))

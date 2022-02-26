@@ -1,4 +1,2 @@
-              VARDAS             PAVARDE     GALUTINS (Med.)
-                 AAA                 AAA                   3
-                BBBB                BBBB                 3.4
-                DDDD                DDDD                   5
+              VARDAS             PAVARDE     GALUTINS (Vid.)
+              thomas           jonauskas                 4.4
