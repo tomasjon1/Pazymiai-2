@@ -1,12 +1,10 @@
-﻿#include <string>
-#include <iomanip>
-#include <iostream>
-#include <cmath>
-#include <algorithm>
-#include <vector>
-#include <functional>
-#include <iostream>
+﻿#include <iostream>
 #include <fstream>
+#include <iomanip>
+#include <random>
+#include <vector>
+#include <algorithm>
+#include <functional>
 
 using std::cout;
 using std::cin;
@@ -112,8 +110,7 @@ int main()
         }
     }
 
-    //std::sort(studentai.begin(), studentai.end(), [](data& a, data& b)
-      //  { return a.vardas < b.vardas; });
+    std::sort(studentai.begin(), studentai.end(), [](studentas& a, studentas& b){ return a.vardas < b.vardas; });
      
     if(mediana) fout << std::setw(20) << "VARDAS" << std::setw(20) << "PAVARDE" << std::setw(20) << "GALUTINS (Med.)" << endl;
     else        fout << std::setw(20) << "VARDAS" << std::setw(20) << "PAVARDE" << std::setw(20) << "GALUTINS (Vid.)" << endl;
