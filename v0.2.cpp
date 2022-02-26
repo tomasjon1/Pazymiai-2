@@ -30,80 +30,84 @@ int ivestiPazymi();
 
 int main()
 {
-   // TO DO:
-   //   1. Make name and last name generator with gender detection
-   //       1.1 3 arrays (names, v.lastname, m.lastname)
-   //       1.2 get name, and check last letter
-   //       1.3 if it ends with s
-   //       1.4 get v.lastname
-   //       1.5 oposite m.lastname
-   //   2. Code file creation with just the header of n-size ND
-   //   3. Code full file creation with 2 last steps
+ 
 
 
-   /* srand(time(NULL));
+    srand(time(NULL));
 
     int studentuKiekis = 0;
     string atsMediana;
     string atsGeneravimas;
     string atsStudentuSkaicius;
+    string atsFailoSkaitymas;
     bool mediana = false;
     bool generavimas = false;
     bool studentuSkaicius = false;
+    bool failoSkaitymas = false;
    
     vector<studentas> studentai;
 
     cout << "Ar notire naudoti mediana vietoje vidurkio (taip/ne): "; atsMediana = atsakymoIvedinimoPatikrinimas();
-    cout << "Ar studentu skaicius yra zinomas (taip/ne): "; atsStudentuSkaicius = atsakymoIvedinimoPatikrinimas();
-    cout << "Ar notire namu darbu pazymius generuoti automatiskai (taip/ne): "; atsGeneravimas = atsakymoIvedinimoPatikrinimas();
-    cout << endl;
-
-    if (atsMediana == "taip") {
-        cout << "Atsakymas bus su mediana." << endl;
-        mediana = true;
-    }
-    else  cout << "Atsakymas bus su vidurkiu." << endl;
-
-    if (atsStudentuSkaicius == "taip") {
-        cout << "Studentu skaicius yra zinomas" << endl;
-        studentuSkaicius = true;
-    }
-    else cout << "Namu darbu skaiciai yra nezinomi" << endl;
-
-    if (atsGeneravimas == "taip") {
-        cout << "Namu darbu pazymiai bus genereruojami" << endl;
-        generavimas = true;
-    }
-    else cout << "Namudarbu pazymiai ne bus genereruojami" << endl;
-
-
-    if (studentuSkaicius)
-    {
-        cout << "Iveskite studentu kieki: "; studentuKiekis = ivestoSkaiciausPatikrinimas();
-        for (int x = 0; x <studentuKiekis; x++)
-        {
-            studentas temp;
-            ivedimas(temp, generavimas);
-            studentai.push_back(temp);
-        }
+    cout << "Ar notire studentus nuskaityti is failo (taip/ne): "; atsFailoSkaitymas = atsakymoIvedinimoPatikrinimas();
+        
+    if (atsFailoSkaitymas == "taip") {
+        cout << "FAILO skaitymas" << endl;
     }
     else
     {
-        string ats;
-        while (true) {
-            cout << "Ar notire ivesti dar studenta (taip/ne): "; ats = atsakymoIvedinimoPatikrinimas();
-            if (ats == "ne")
-                break;
-            studentas temp;
-            ivedimas(temp, generavimas);
-            studentai.push_back(temp);
+        cout << "Ar studentu skaicius yra zinomas (taip/ne): "; atsStudentuSkaicius = atsakymoIvedinimoPatikrinimas();
+        cout << "Ar notire namu darbu pazymius generuoti automatiskai (taip/ne): "; atsGeneravimas = atsakymoIvedinimoPatikrinimas();
+        cout << endl;
+
+        if (atsMediana == "taip") {
+            cout << "Atsakymas bus su mediana." << endl;
+            mediana = true;
+        }
+        else  cout << "Atsakymas bus su vidurkiu." << endl;
+
+        if (atsStudentuSkaicius == "taip") {
+            cout << "Studentu skaicius yra zinomas" << endl;
+            studentuSkaicius = true;
+        }
+        else cout << "Namu darbu skaiciai yra nezinomi" << endl;
+
+        if (atsGeneravimas == "taip") {
+            cout << "Namu darbu pazymiai bus genereruojami" << endl;
+            generavimas = true;
+        }
+        else cout << "Namudarbu pazymiai ne bus genereruojami" << endl;
+
+
+        if (studentuSkaicius)
+        {
+            cout << "Iveskite studentu kieki: "; studentuKiekis = ivestoSkaiciausPatikrinimas();
+            for (int x = 0; x < studentuKiekis; x++)
+            {
+                studentas temp;
+                ivedimas(temp, generavimas);
+                studentai.push_back(temp);
+            }
+        }
+        else
+        {
+            string ats;
+            while (true) {
+                cout << "Ar notire ivesti dar studenta (taip/ne): "; ats = atsakymoIvedinimoPatikrinimas();
+                if (ats == "ne")
+                    break;
+                studentas temp;
+                ivedimas(temp, generavimas);
+                studentai.push_back(temp);
+            }
         }
     }
+
+    
      
     if(mediana) cout << std::setw(20) << "VARDAS" << std::setw(20) << "PAVARDE" << std::setw(20) << "GALUTINS (Med.)" << endl;
     else        cout << std::setw(20) << "VARDAS" << std::setw(20) << "PAVARDE" << std::setw(20) << "GALUTINS (Vid.)" << endl;
 
-    for (studentas studentas : studentai) isvedimas(studentas, mediana);*/
+    for (studentas studentas : studentai) isvedimas(studentas, mediana);
 
     
 }
