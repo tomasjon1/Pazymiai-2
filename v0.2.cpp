@@ -4,12 +4,17 @@
 #include <cmath>
 #include <algorithm>
 #include <vector>
+#include <functional>
+#include <iostream>
+#include <fstream>
 
 using std::cout;
 using std::cin;
 using std::endl;
 using std::string;
 using std::vector;
+using std::ifstream;
+using std::ofstream;
 
 
 struct studentas {
@@ -27,13 +32,11 @@ int ivestoSkaiciausPatikrinimas();
 string atsakymoIvedinimoPatikrinimas();
 bool pazymioPatikrinimas(int n);
 int ivestiPazymi();
-void skatiymasIsFailo();
+void skatiymasIsFailo(ifstream& fin, vector<string>& length, vector<studentas>& studentai);
 
 int main()
 {
  
-
-
     srand(time(NULL));
 
     int studentuKiekis = 0;
@@ -47,16 +50,19 @@ int main()
     bool failoSkaitymas = false;
    
     vector<studentas> studentai;
+    std::ofstream fout("rez.txt");
+
 
     cout << "Ar notire naudoti mediana vietoje vidurkio (taip/ne): "; atsMediana = atsakymoIvedinimoPatikrinimas();
     cout << "Ar notire studentus nuskaityti is failo (taip/ne): "; atsFailoSkaitymas = atsakymoIvedinimoPatikrinimas();
         
     if (atsFailoSkaitymas == "taip") {
 
-        vector<string> pazymiuKiekis;
+        vector<string> antrastineEilute;
 
         std::ifstream fin("studentai.txt");
-        std::ofstream fout("rez.txt");
+
+        skatiymasIsFailo(fin, antrastineEilute, studentai);
 
         cout << "FAILO skaitymas" << endl;
     }
@@ -109,7 +115,7 @@ int main()
         }
     }
 
-    
+    cout << " BAIGIAU " << endl;
      
     if(mediana) cout << std::setw(20) << "VARDAS" << std::setw(20) << "PAVARDE" << std::setw(20) << "GALUTINS (Med.)" << endl;
     else        cout << std::setw(20) << "VARDAS" << std::setw(20) << "PAVARDE" << std::setw(20) << "GALUTINS (Vid.)" << endl;
@@ -210,5 +216,27 @@ int ivestiPazymi()
     {
         int paz = ivestoSkaiciausPatikrinimas();
         if (pazymioPatikrinimas(paz)) return paz;
+    }
+}
+
+void skatiymasIsFailo(ifstream& fin, vector<string>& length, vector<studentas>& studentai)
+{
+    string t;
+    while ((fin.peek() != '\n') && (fin >> t))
+        length.push_back(t);
+    length.resize(length.size() - 3);
+
+    while (!fin.eof())
+    {
+        int p;
+        studentas t;
+        fin >> t.vardas >> t.pavarde;
+        for (auto& el : length)
+        {
+            fin >> p;
+            t.pazymiai.push_back(p);
+        }
+        fin >> t.egzaminas;
+        studentai.add(t);
     }
 }
