@@ -27,6 +27,7 @@ int ivestoSkaiciausPatikrinimas();
 string atsakymoIvedinimoPatikrinimas();
 bool pazymioPatikrinimas(int n);
 int ivestiPazymi();
+void skatiymasIsFailo();
 
 int main()
 {
@@ -51,6 +52,12 @@ int main()
     cout << "Ar notire studentus nuskaityti is failo (taip/ne): "; atsFailoSkaitymas = atsakymoIvedinimoPatikrinimas();
         
     if (atsFailoSkaitymas == "taip") {
+
+        vector<string> pazymiuKiekis;
+
+        std::ifstream fin("studentai.txt");
+        std::ofstream fout("rez.txt");
+
         cout << "FAILO skaitymas" << endl;
     }
     else
