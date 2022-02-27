@@ -1,4 +1,4 @@
-              VARDAS             PAVARDE     GALUTINS (Vid.)     GALUTINS (Vid.)
+              VARDAS             PAVARDE     GALUTINS (Vid.)     GALUTINS (Med.)
              Vardas1            Pavarde1                 3.8                3.88
             Vardas10           Pavarde10                 4.4             4.18667
            Vardas100          Pavarde100                   6             6.69333
