@@ -1,6 +1,6 @@
-﻿#include "data.h"
-#include "validation.h"
-#include "InputAndOutput.h"
+﻿#include "headers/data.h"
+#include "headers/validation.h"
+#include "headers/InputAndOutput.h"
 
 using namespace std;
 

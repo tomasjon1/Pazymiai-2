@@ -1,5 +1,3 @@
               VARDAS             PAVARDE     GALUTINS (Vid.)     GALUTINS (Med.)
-               Ignas          Maslauskas                 4.8                 5.2
-            Mazvydas            Svirskas                 7.8                7.68
-               Tadas             Bamblys                 5.2                 5.6
-               Tomas           Jonauskas                 6.4             6.22857
+                   a                   a                 5.6                 5.7
+                   b                   b                 2.6                 2.9

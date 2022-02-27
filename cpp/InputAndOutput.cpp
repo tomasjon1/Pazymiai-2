@@ -1,4 +1,4 @@
-#include "InputAndOutput.h"
+#include "../headers/InputAndOutput.h"
 
 
 void ivedimas(studentas& data, bool generavimas) {
