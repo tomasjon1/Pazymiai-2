@@ -21,11 +21,12 @@ struct studentas {
     vector<int> pazymiai;
     int pazymiuKiekis = 0;
     int egzaminas;
-    double rezultatas = 0;
+    double rezultatasVid = 0;
+    double rezultatasMed = 0;
 };
 
 void ivedimas(studentas& data, bool generavimas);
-void isvedimas(studentas& data, bool mediana, ofstream& fout);
+void isvedimas(studentas& data, ofstream& fout);
 int ivestoSkaiciausPatikrinimas();
 string atsakymoIvedinimoPatikrinimas();
 bool pazymioPatikrinimas(int n);
@@ -38,11 +39,9 @@ int main()
     srand(time(NULL));
 
     int studentuKiekis = 0;
-    string atsMediana;
     string atsGeneravimas;
     string atsStudentuSkaicius;
     string atsFailoSkaitymas;
-    bool mediana = false;
     bool generavimas = false;
     bool studentuSkaicius = false;
     bool failoSkaitymas = false;
@@ -51,7 +50,6 @@ int main()
     std::ofstream fout("rez.txt");
 
 
-    cout << "Ar notire naudoti mediana vietoje vidurkio (taip/ne): "; atsMediana = atsakymoIvedinimoPatikrinimas();
     cout << "Ar notire studentus nuskaityti is failo (taip/ne): "; atsFailoSkaitymas = atsakymoIvedinimoPatikrinimas();
         
     if (atsFailoSkaitymas == "taip") {
@@ -66,12 +64,6 @@ int main()
         cout << "Ar studentu skaicius yra zinomas (taip/ne): "; atsStudentuSkaicius = atsakymoIvedinimoPatikrinimas();
         cout << "Ar notire namu darbu pazymius generuoti automatiskai (taip/ne): "; atsGeneravimas = atsakymoIvedinimoPatikrinimas();
         cout << endl;
-
-        if (atsMediana == "taip") {
-            cout << "Atsakymas bus su mediana." << endl;
-            mediana = true;
-        }
-        else  cout << "Atsakymas bus su vidurkiu." << endl;
 
         if (atsStudentuSkaicius == "taip") {
             cout << "Studentu skaicius yra zinomas" << endl;
@@ -110,12 +102,11 @@ int main()
         }
     }
 
-o    std::sort(studentai.begin(), studentai.end(), [](studentas& a, studentas& b){ return a.vardas < b.vardas; });
+    std::sort(studentai.begin(), studentai.end(), [](studentas& a, studentas& b){ return a.vardas < b.vardas; });
      
-    if(mediana) fout << std::setw(20) << "VARDAS" << std::setw(20) << "PAVARDE" << std::setw(20) << "GALUTINS (Med.)" << endl;
-    else        fout << std::setw(20) << "VARDAS" << std::setw(20) << "PAVARDE" << std::setw(20) << "GALUTINS (Vid.)" << endl;
+    fout << std::setw(20) << "VARDAS" << std::setw(20) << "PAVARDE" << std::setw(20) << "GALUTINS (Vid.)" << std::setw(20) << "GALUTINS (Med.)" << endl;
 
-    for (studentas studentas : studentai) isvedimas(studentas, mediana, fout);
+    for (studentas studentas : studentai) isvedimas(studentas, fout);
 
     
 }
@@ -144,21 +135,17 @@ void ivedimas(studentas& data, bool generavimas) {
     cout << endl;
 }
 //
-void isvedimas(studentas& data, bool mediana, ofstream& fout) {
+void isvedimas(studentas& data, ofstream& fout) {
     fout << std::setw(20) << data.vardas << std::setw(20) << data.pavarde;
 
-    if (mediana) {
-        std::sort(data.pazymiai.begin(), data.pazymiai.end());
-        if (data.pazymiuKiekis % 2 !=  0)
-            data.rezultatas = 0.4 * (double)data.pazymiai[data.pazymiuKiekis / 2] + 0.6 * data.egzaminas;
-        else
-            data.rezultatas = 0.4 * ((double)(data.pazymiai[(data.pazymiuKiekis - 1) / 2] + data.pazymiai[data.pazymiuKiekis / 2]) / 2.0) + 0.6 * data.egzaminas;
-    }
-    else {
-        for (int x = 0; x < data.pazymiuKiekis; x++) data.rezultatas += data.pazymiai[x] * 1.0;
-        data.rezultatas = (0.4 * (data.rezultatas / data.pazymiuKiekis)) + 0.6 * data.egzaminas;
-    }
-    fout << std::setw(20) << data.rezultatas << endl;
+    std::sort(data.pazymiai.begin(), data.pazymiai.end());
+    if (data.pazymiuKiekis % 2 !=  0) data.rezultatasMed = 0.4 * (double)data.pazymiai[data.pazymiuKiekis / 2] + 0.6 * data.egzaminas;
+    else data.rezultatasMed = 0.4 * ((double)(data.pazymiai[(data.pazymiuKiekis - 1) / 2] + data.pazymiai[data.pazymiuKiekis / 2]) / 2.0) + 0.6 * data.egzaminas;
+   
+    for (int x = 0; x < data.pazymiuKiekis; x++) data.rezultatasVid += data.pazymiai[x] * 1.0;
+    data.rezultatasVid = (0.4 * (data.rezultatasVid / data.pazymiuKiekis)) + 0.6 * data.egzaminas;
+    
+    fout << std::setw(20) << data.rezultatasMed << std::setw(20) << data.rezultatasVid << endl;
 }
 
 int ivestoSkaiciausPatikrinimas()
