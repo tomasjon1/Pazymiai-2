@@ -27,8 +27,17 @@ int main()
     if (atsFailoSkaitymas == "taip") {
 
         vector<string> antrastineEilute;
-        std::ifstream fin("studentai.txt");
-        skaitymasIsFailo(fin, antrastineEilute, studentai);
+
+        try 
+        {
+            std::ifstream fin("studentai.txt");
+            skaitymasIsFailo(fin, antrastineEilute, studentai);
+
+        }
+        catch (std::exception& e)
+        {
+            cout << "Failas nerastas" << endl;
+        }
 
     }
     else
