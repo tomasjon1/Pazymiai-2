@@ -23,6 +23,8 @@ int main()
     bufer_read(studentai);
     bufer_write(studentai);
 
+    //
+
   /*  std::ofstream fout("rez.txt");
 
 
