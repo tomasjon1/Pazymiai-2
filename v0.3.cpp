@@ -22,13 +22,10 @@ int main()
 
     bufer_read(studentai);
 
-    for (studentas studentas : studentai)
-    {
-        galutiniai(studentas);
+   
+        galutiniai(studentai);
 
-        cout << studentas.vardas << " " << studentas.rezultatasMed << endl;
-
-    }
+ 
 
     bufer_write(studentai);
 

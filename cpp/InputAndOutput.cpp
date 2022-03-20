@@ -99,27 +99,31 @@ void bufer_write(vector<studentas>& studentai) {
     outputas << std::left << std::setw(20) << "Galutinis (Med.)";
     outputas << endl;
 
-    for (auto& studentas : studentai) {
-        outputas << std::left << std::setw(20) << studentas.vardas;
-        outputas << std::left << std::setw(20) << studentas.pavarde;
-        outputas << std::left << std::setw(20) << studentas.rezultatasVid;
-        outputas << std::left << std::setw(20) << studentas.rezultatasMed;
+    for (auto& stud : studentai) {
+
+        cout << stud.vardas << " " << stud.pavarde << " " << stud.rezultatasMed << " " << stud.rezultatasVid << endl;
+        outputas << std::left << std::setw(20) << stud.vardas;
+        outputas << std::left << std::setw(20) << stud.pavarde;
+        outputas << std::left << std::setw(20) << stud.rezultatasVid;
+        outputas << std::left << std::setw(20) << stud.rezultatasMed;
         outputas << endl;
     }
 
     ssToFile("rez.txt", outputas);
 }
 
-void galutiniai(studentas& data)
+void galutiniai(vector<studentas>& studentai)
 {
-    std::sort(data.pazymiai.begin(), data.pazymiai.end());
-    if (data.pazymiuKiekis % 2 != 0) data.rezultatasMed = 0.4 * (double)data.pazymiai[data.pazymiuKiekis / 2] + 0.6 * data.egzaminas;
-    else data.rezultatasMed = 0.4 * ((double)(data.pazymiai[(data.pazymiuKiekis - 1) / 2] + data.pazymiai[data.pazymiuKiekis / 2]) / 2.0) + 0.6 * data.egzaminas;
+    for (auto& data : studentai) {
 
-    for (int x = 0; x < data.pazymiuKiekis; x++) data.rezultatasVid += data.pazymiai[x] * 1.0;
-    data.rezultatasVid = (0.4 * (data.rezultatasVid / data.pazymiuKiekis)) + 0.6 * data.egzaminas;
+        std::sort(data.pazymiai.begin(), data.pazymiai.end());
+        if (data.pazymiai.size() % 2 != 0) data.rezultatasMed = 0.4 * (double)data.pazymiai[data.pazymiai.size() / 2] + 0.6 * data.egzaminas;
+        else data.rezultatasMed = 0.4 * ((double)(data.pazymiai[(data.pazymiai.size() - 1) / 2] + data.pazymiai[data.pazymiai.size() / 2]) / 2.0) + 0.6 * data.egzaminas;
 
-}
+        for (int x = 0; x < data.pazymiai.size(); x++) data.rezultatasVid += data.pazymiai[x] * 1.0;
+        data.rezultatasVid = (0.4 * (data.rezultatasVid / data.pazymiai.size())) + 0.6 * data.egzaminas;
+    }
+} 
 
 
 void ssToFile(string file_name, std::stringstream& data)
@@ -134,11 +138,11 @@ void isvedimas(studentas& data, ofstream& fout) {
     fout << std::setw(20) << data.vardas << std::setw(20) << data.pavarde;
 
     std::sort(data.pazymiai.begin(), data.pazymiai.end());
-    if (data.pazymiuKiekis % 2 != 0) data.rezultatasMed = 0.4 * (double)data.pazymiai[data.pazymiuKiekis / 2] + 0.6 * data.egzaminas;
-    else data.rezultatasMed = 0.4 * ((double)(data.pazymiai[(data.pazymiuKiekis - 1) / 2] + data.pazymiai[data.pazymiuKiekis / 2]) / 2.0) + 0.6 * data.egzaminas;
+    if (data.pazymiai.size() % 2 != 0) data.rezultatasMed = 0.4 * (double)data.pazymiai[data.pazymiai.size() / 2] + 0.6 * data.egzaminas;
+    else data.rezultatasMed = 0.4 * ((double)(data.pazymiai[(data.pazymiai.size() - 1) / 2] + data.pazymiai[data.pazymiai.size() / 2]) / 2.0) + 0.6 * data.egzaminas;
 
-    for (int x = 0; x < data.pazymiuKiekis; x++) data.rezultatasVid += data.pazymiai[x] * 1.0;
-    data.rezultatasVid = (0.4 * (data.rezultatasVid / data.pazymiuKiekis)) + 0.6 * data.egzaminas;
+    for (int x = 0; x < data.pazymiai.size(); x++) data.rezultatasVid += data.pazymiai[x] * 1.0;
+    data.rezultatasVid = (0.4 * (data.rezultatasVid / data.pazymiai.size())) + 0.6 * data.egzaminas;
 
     fout << std::setw(20) << data.rezultatasMed << std::setw(20) << data.rezultatasVid << endl;
 }
