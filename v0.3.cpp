@@ -14,43 +14,55 @@ int main()
     string atsGeneravimas;
     string atsStudentuSkaicius;
     string atsFailoSkaitymas;
+    string atsFailoGeneravimas;
     bool generavimas = false;
     bool studentuSkaicius = false;
     bool failoSkaitymas = false;
-   
+    bool failoGeneravimas = false;
+
+    string genFile_name;
+
     vector<studentas> studentai;
 
-    bufer_read(studentai);
-
-   
-        galutiniai(studentai);
-
- 
-
-    bufer_write(studentai);
-
-    //test psuh
-
-  /*  std::ofstream fout("rez.txt");
+    std::ofstream fout("rez.txt");
 
 
     cout << "Ar notire studentus nuskaityti is failo (taip/ne): "; atsFailoSkaitymas = atsakymoIvedinimoPatikrinimas();
         
     if (atsFailoSkaitymas == "taip") {
 
-        vector<string> antrastineEilute;
+        cout << "Ar notire studentus nuskaityti is failo (taip/ne): "; atsFailoGeneravimas = atsakymoIvedinimoPatikrinimas();
+        if (atsFailoGeneravimas == "taip") {
 
-        try 
-        {
-            std::ifstream fin("studentai.txt");
-            skaitymasIsFailo(fin, antrastineEilute, studentai);
+            cin.ignore();
+            cout << "Koks turetu buti failo pavadinimas?(studentai.txt by default): ";
+            getline(cin, genFile_name);
+            genFile_name.empty() ? genFile_name = "studentai1.txt" : genFile_name += ".txt";
+            cout << "Kiek generuoti studentu?" << endl;
+            int studCount;
+            studCount = ivestoSkaiciausPatikrinimas();
+            studentai.reserve(studCount);
+            cout << "Kiek generuoti namu darbu?" << endl;
+            int ndCount;
+            ndCount = ivestoSkaiciausPatikrinimas();
+            cout << "-------------------------" << endl;
+            cout << studCount << " irasu testavimas" << endl;
+            genFile(studCount, genFile_name, ndCount);
 
+            bufer_read(studentai, genFile_name);
         }
-        catch (std::exception& e)
-        {
-            cout << "Failas nerastas" << endl;
-        }
+        else {
+            vector<string> antrastineEilute;
 
+            try
+            {
+                bufer_read(studentai, "studentai.txt");
+            }
+            catch (std::exception& e)
+            {
+                cout << "Failas nerastas" << endl;
+            }
+        }
     }
     else
     {
@@ -95,10 +107,9 @@ int main()
         }
     }
 
+    galutiniai(studentai);
+
     std::sort(studentai.begin(), studentai.end(), [](studentas& a, studentas& b){ return a.vardas < b.vardas; });
      
-    fout << std::setw(20) << "VARDAS" << std::setw(20) << "PAVARDE" << std::setw(20) << "GALUTINS (Vid.)" << std::setw(20) << "GALUTINS (Med.)" << endl;
-
-    for (studentas studentas : studentai) 
-        isvedimas(studentas, fout);*/
+    bufer_write(studentai);
 }
