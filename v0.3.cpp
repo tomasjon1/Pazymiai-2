@@ -21,6 +21,15 @@ int main()
     vector<studentas> studentai;
 
     bufer_read(studentai);
+
+    for (studentas studentas : studentai)
+    {
+        galutiniai(studentas);
+
+        cout << studentas.vardas << " " << studentas.rezultatasMed << endl;
+
+    }
+
     bufer_write(studentai);
 
     //test psuh

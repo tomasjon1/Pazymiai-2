@@ -64,9 +64,13 @@ void bufer_read(vector<studentas>& studentai) {
 
     std::ifstream open_f("studentai.txt");
 
+
     buffer << open_f.rdbuf();
     open_f.close();
     std::getline(buffer, line);
+
+
+
     while (buffer) {
         std::getline(buffer, line);
         if (line.length() == 0)
@@ -77,6 +81,7 @@ void bufer_read(vector<studentas>& studentai) {
         int mark;
         while (lineStream >> mark)
         {
+
             t.pazymiai.push_back(mark);
         }
             t.egzaminas = t.pazymiai.back();
@@ -94,8 +99,28 @@ void bufer_write(vector<studentas>& studentai) {
     outputas << std::left << std::setw(20) << "Galutinis (Med.)";
     outputas << endl;
 
+    for (auto& studentas : studentai) {
+        outputas << std::left << std::setw(20) << studentas.vardas;
+        outputas << std::left << std::setw(20) << studentas.pavarde;
+        outputas << std::left << std::setw(20) << studentas.rezultatasVid;
+        outputas << std::left << std::setw(20) << studentas.rezultatasMed;
+        outputas << endl;
+    }
+
     ssToFile("rez.txt", outputas);
 }
+
+void galutiniai(studentas& data)
+{
+    std::sort(data.pazymiai.begin(), data.pazymiai.end());
+    if (data.pazymiuKiekis % 2 != 0) data.rezultatasMed = 0.4 * (double)data.pazymiai[data.pazymiuKiekis / 2] + 0.6 * data.egzaminas;
+    else data.rezultatasMed = 0.4 * ((double)(data.pazymiai[(data.pazymiuKiekis - 1) / 2] + data.pazymiai[data.pazymiuKiekis / 2]) / 2.0) + 0.6 * data.egzaminas;
+
+    for (int x = 0; x < data.pazymiuKiekis; x++) data.rezultatasVid += data.pazymiai[x] * 1.0;
+    data.rezultatasVid = (0.4 * (data.rezultatasVid / data.pazymiuKiekis)) + 0.6 * data.egzaminas;
+
+}
+
 
 void ssToFile(string file_name, std::stringstream& data)
 {
@@ -117,3 +142,4 @@ void isvedimas(studentas& data, ofstream& fout) {
 
     fout << std::setw(20) << data.rezultatasMed << std::setw(20) << data.rezultatasVid << endl;
 }
+

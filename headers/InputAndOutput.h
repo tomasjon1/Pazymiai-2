@@ -10,4 +10,5 @@ void isvedimas(studentas& data, ofstream& fout);
 void bufer_read(vector<studentas>& studentai);
 void bufer_write(vector<studentas>& studentai);
 void ssToFile(string file_name, std::stringstream& data);
+void galutiniai(studentas& data);
 
