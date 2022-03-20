@@ -23,7 +23,7 @@ int main()
     bufer_read(studentai);
     bufer_write(studentai);
 
-    //
+    //test psuh
 
   /*  std::ofstream fout("rez.txt");
 
