@@ -35,7 +35,7 @@ int main()
         
     if (atsFailoSkaitymas == "taip") {
 
-        cout << "Ar notire studentus nuskaityti is failo (taip/ne): "; atsFailoGeneravimas = atsakymoIvedinimoPatikrinimas();
+        cout << "Ar notire studentu duomenis sugeneruoti (taip/ne): "; atsFailoGeneravimas = atsakymoIvedinimoPatikrinimas();
         if (atsFailoGeneravimas == "taip") {
 
             cin.ignore();
