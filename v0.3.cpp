@@ -1,13 +1,20 @@
 ﻿#include "headers/data.h"
 #include "headers/validation.h"
 #include "headers/InputAndOutput.h"
+#include "headers/calculations.h"
+#include "headers/generation.h"
+
+#include <chrono>
 
 using namespace std;
-
+using hrClock = std::chrono::high_resolution_clock;
+using durationDouble = std::chrono::duration<double>;
 
 int main()
 {
  
+    auto programStart = hrClock::now();
+
     srand(time(NULL));
 
     int studentuKiekis = 0;
@@ -23,9 +30,6 @@ int main()
     string genFile_name;
 
     vector<studentas> studentai;
-
-    std::ofstream fout("rez.txt");
-
 
     cout << "Ar notire studentus nuskaityti is failo (taip/ne): "; atsFailoSkaitymas = atsakymoIvedinimoPatikrinimas();
         
@@ -47,7 +51,9 @@ int main()
             ndCount = ivestoSkaiciausPatikrinimas();
             cout << "-------------------------" << endl;
             cout << studCount << " irasu testavimas" << endl;
+            auto genStart = hrClock::now();
             genFile(studCount, genFile_name, ndCount);
+            cout << "Failo generavimo laikas: " << durationDouble(hrClock::now() - genStart).count() << " s" << endl;
 
             bufer_read(studentai, genFile_name);
         }
@@ -63,6 +69,22 @@ int main()
                 cout << "Failas nerastas" << endl;
             }
         }
+
+        galutiniai(studentai);
+
+        std::sort(studentai.begin(), studentai.end(), [](studentas& a, studentas& b) { return a.vardas < b.vardas; });
+
+        auto sortStart = hrClock::now();
+        std::stringstream kietiakai;
+        std::stringstream vargsai;
+        sortStudents(kietiakai, vargsai, studentai);
+        cout << "Studentu dalinimo i dvi grupes laikas: " << durationDouble(hrClock::now() - sortStart).count() << " s" << endl;
+
+        auto newWrite = hrClock::now();
+        ssToFile("kietiakai.txt", kietiakai);
+        ssToFile("vargsai.txt", vargsai);
+        cout << "Surusiuotu studentu isvedimas i naujus failus uztruko: " << durationDouble(hrClock::now() - newWrite).count() << " s" << endl;
+
     }
     else
     {
@@ -105,11 +127,13 @@ int main()
                     break;
             }
         }
+
+
+        galutiniai(studentai);
+        std::sort(studentai.begin(), studentai.end(), [](studentas& a, studentas& b) { return a.vardas < b.vardas; });
+        bufer_write(studentai);
     }
 
-    galutiniai(studentai);
-
-    std::sort(studentai.begin(), studentai.end(), [](studentas& a, studentas& b){ return a.vardas < b.vardas; });
-     
-    bufer_write(studentai);
+    cout << "Visos programos veikimo laikas: " << durationDouble(hrClock::now() - programStart).count() << " s" << endl;
+    cout << "-------------------------" << endl;
 }
