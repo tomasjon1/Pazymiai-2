@@ -57,6 +57,54 @@ void skaitymasIsFailo(ifstream& fin, vector<string>& length, vector<studentas>& 
     }
 }
 
+void bufer_read(vector<studentas>& studentai) {
+
+    std::string line;
+    std::stringstream buffer;
+
+    std::ifstream open_f("studentai.txt");
+
+    buffer << open_f.rdbuf();
+    open_f.close();
+    std::getline(buffer, line);
+    while (buffer) {
+        std::getline(buffer, line);
+        if (line.length() == 0)
+            break;
+        studentas t;
+        std::istringstream lineStream(line);
+        lineStream >> t.vardas >> t.pavarde;
+        int mark;
+        while (lineStream >> mark)
+        {
+            t.pazymiai.push_back(mark);
+        }
+            t.egzaminas = t.pazymiai.back();
+            t.pazymiai.pop_back();
+            studentai.push_back(t);
+    }
+}
+
+void bufer_write(vector<studentas>& studentai) {
+
+    std::stringstream outputas;
+    outputas << std::left << std::setw(20) << "Vardas";
+    outputas << std::left << std::setw(20) << "Pavarde";
+    outputas << std::left << std::setw(20) << "Galutinis (Vid.)";
+    outputas << std::left << std::setw(20) << "Galutinis (Med.)";
+    outputas << endl;
+
+    ssToFile("rez.txt", outputas);
+}
+
+void ssToFile(string file_name, std::stringstream& data)
+{
+    std::ofstream out_f(file_name);
+    out_f << data.rdbuf();
+    out_f.close();
+}
+
+
 void isvedimas(studentas& data, ofstream& fout) {
     fout << std::setw(20) << data.vardas << std::setw(20) << data.pavarde;
 
@@ -69,6 +117,3 @@ void isvedimas(studentas& data, ofstream& fout) {
 
     fout << std::setw(20) << data.rezultatasMed << std::setw(20) << data.rezultatasVid << endl;
 }
-
-
-

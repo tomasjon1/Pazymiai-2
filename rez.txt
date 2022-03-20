@@ -1,1 +1,1 @@
-              VARDAS             PAVARDE     GALUTINS (Vid.)     GALUTINS (Med.)
+Vardas              Pavarde             Galutinis (Vid.)    Galutinis (Med.)    

@@ -19,7 +19,11 @@ int main()
     bool failoSkaitymas = false;
    
     vector<studentas> studentai;
-    std::ofstream fout("rez.txt");
+
+    bufer_read(studentai);
+    bufer_write(studentai);
+
+  /*  std::ofstream fout("rez.txt");
 
 
     cout << "Ar notire studentus nuskaityti is failo (taip/ne): "; atsFailoSkaitymas = atsakymoIvedinimoPatikrinimas();
@@ -88,7 +92,5 @@ int main()
     fout << std::setw(20) << "VARDAS" << std::setw(20) << "PAVARDE" << std::setw(20) << "GALUTINS (Vid.)" << std::setw(20) << "GALUTINS (Med.)" << endl;
 
     for (studentas studentas : studentai) 
-        isvedimas(studentas, fout);
-
-    
+        isvedimas(studentas, fout);*/
 }

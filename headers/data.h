@@ -7,6 +7,8 @@
 #include <vector>
 #include <algorithm>
 #include <functional>
+#include <string>
+
 
 using std::cout;
 using std::cin;
