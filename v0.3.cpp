@@ -45,7 +45,6 @@ int main()
             cout << "Kiek generuoti studentu?" << endl;
             int studCount;
             studCount = ivestoSkaiciausPatikrinimas();
-            studentai.reserve(studCount);
             cout << "Kiek generuoti namu darbu?" << endl;
             int ndCount;
             ndCount = ivestoSkaiciausPatikrinimas();
@@ -62,7 +61,11 @@ int main()
 
             try
             {
-                bufer_read(studentai, "studentai.txt");
+                cout << "iveskite fialo pavadinima ";
+                string pav;
+                cin >> pav;
+                pav = pav + ".txt";
+                bufer_read(studentai, pav);
             }
             catch (std::exception& e)
             {
