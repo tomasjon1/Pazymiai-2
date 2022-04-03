@@ -50,9 +50,9 @@ int main()
             ndCount = ivestoSkaiciausPatikrinimas();
             cout << "-------------------------" << endl;
             cout << studCount << " irasu testavimas" << endl;
-            auto genStart = hrClock::now();
+           // auto genStart = hrClock::now();
             genFile(studCount, genFile_name, ndCount);
-            cout << "Failo generavimo laikas: " << durationDouble(hrClock::now() - genStart).count() << " s" << endl;
+           // cout << "Failo generavimo laikas: " << durationDouble(hrClock::now() - genStart).count() << " s" << endl;
 
             bufer_read(studentai, genFile_name);
         }
@@ -65,7 +65,9 @@ int main()
                 string pav;
                 cin >> pav;
                 pav = pav + ".txt";
+                auto genRead = hrClock::now();
                 bufer_read(studentai, pav);
+                cout << "Failo nuskaitymo laikas: " << durationDouble(hrClock::now() - genRead).count() << " s" << endl;
             }
             catch (std::exception& e)
             {
