@@ -8,6 +8,7 @@
 #include <algorithm>
 #include <functional>
 #include <string>
+#include <deque>
 
 
 using std::cout;

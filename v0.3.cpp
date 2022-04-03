@@ -29,7 +29,7 @@ int main()
 
     string genFile_name;
 
-    vector<studentas> studentai;
+    deque<studentas> studentai;
 
     cout << "Ar notire studentus nuskaityti is failo (taip/ne): "; atsFailoSkaitymas = atsakymoIvedinimoPatikrinimas();
         
