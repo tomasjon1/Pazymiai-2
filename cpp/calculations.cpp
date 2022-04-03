@@ -1,7 +1,7 @@
 #include "../headers/calculations.h"
 
 
-void galutiniai(deque<studentas>& studentai)
+void galutiniai(list<studentas>& studentai)
 {
     for (auto& data : studentai) {
 
@@ -14,7 +14,7 @@ void galutiniai(deque<studentas>& studentai)
     }
 }
 
-void sortStudents(std::stringstream& kietiakai, std::stringstream& vargsai, deque<studentas>& studentai)
+void sortStudents(std::stringstream& kietiakai, std::stringstream& vargsai, list<studentas>& studentai)
 {
     for (auto& stud : studentai)
     {

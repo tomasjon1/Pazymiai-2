@@ -8,7 +8,7 @@
 #include <algorithm>
 #include <functional>
 #include <string>
-#include <deque>
+#include <list>
 
 
 using std::cout;
@@ -18,7 +18,7 @@ using std::string;
 using std::vector;
 using std::ifstream;
 using std::ofstream;
-using std::deque;
+using std::list;
 
 
 struct studentas {

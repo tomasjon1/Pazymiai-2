@@ -29,7 +29,7 @@ int main()
 
     string genFile_name;
 
-    deque<studentas> studentai;
+    list<studentas> studentai;
 
     cout << "Ar notire studentus nuskaityti is failo (taip/ne): "; atsFailoSkaitymas = atsakymoIvedinimoPatikrinimas();
         
@@ -74,8 +74,6 @@ int main()
         }
 
         galutiniai(studentai);
-
-        std::sort(studentai.begin(), studentai.end(), [](studentas& a, studentas& b) { return a.vardas < b.vardas; });
 
         auto sortStart = hrClock::now();
         std::stringstream kietiakai;
@@ -133,7 +131,6 @@ int main()
 
 
         galutiniai(studentai);
-        std::sort(studentai.begin(), studentai.end(), [](studentas& a, studentas& b) { return a.vardas < b.vardas; });
         bufer_write(studentai);
     }
 
