@@ -77,6 +77,8 @@ int main()
 
         galutiniai(studentai);
 
+        studentai.sort([](const studentas& a, const studentas& b) {return a.vardas < b.vardas; });
+
         auto sortStart = hrClock::now();
         std::stringstream kietiakai;
         std::stringstream vargsai;
