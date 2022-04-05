@@ -13,7 +13,7 @@ using durationDouble = std::chrono::duration<double>;
 int main()
 {
  
-    auto programStart = hrClock::now();
+    //auto programStart = hrClock::now();
 
     srand(time(NULL));
 
@@ -53,8 +53,10 @@ int main()
            // auto genStart = hrClock::now();
             genFile(studCount, genFile_name, ndCount);
            // cout << "Failo generavimo laikas: " << durationDouble(hrClock::now() - genStart).count() << " s" << endl;
-
+            auto genRead = hrClock::now();
             bufer_read(studentai, genFile_name);
+            cout << "Failo nuskaitymo laikas: " << durationDouble(hrClock::now() - genRead).count() << " s" << endl;
+
         }
         else {
             vector<string> antrastineEilute;
@@ -138,6 +140,6 @@ int main()
         bufer_write(studentai);
     }
 
-    cout << "Visos programos veikimo laikas: " << durationDouble(hrClock::now() - programStart).count() << " s" << endl;
+    //cout << "Visos programos veikimo laikas: " << durationDouble(hrClock::now() - programStart).count() << " s" << endl;
     cout << "-------------------------" << endl;
 }
