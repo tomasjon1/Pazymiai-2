@@ -3,5 +3,5 @@
 #include "data.h"
 #include "validation.h"
 
-void galutiniai(list<studentas>& studentai);
-void sortStudents(std::stringstream& kietiakai, std::stringstream& vargsai, list<studentas>& studentai);
+void galutiniai(list<studentas> &studentai);
+void sortStudents(list<studentas> &kietiakai, list<studentas> &vargsai, list<studentas> &studentai);

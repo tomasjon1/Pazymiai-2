@@ -19,38 +19,3 @@ Norint pasinaudoti šia programa, Jums reikia įsijungti terminal. Su komanda cd
 
 ### Pasirinkus šiuos nustatymus matysite sudarytą lentelę su studentu pavardėmis, vardais ir pažymių vidurkiais ir/arba medianomis.
 
-## PC stats
-- CPU Intel Core i7-8750H
-- RAM 16
-- SSD 500GB
-
-## Rezultatai
--------------------------
-1000 irasu testavimas
-- Failo nuskaitymo laikas: 0.0119663 s
-- Studentu dalinimo i dvi grupes laikas: 0.002585 s
-- Surusiuotu studentu isvedimas i naujus failus uztruko: 0.0017015 s
--------------------------
-10000 irasu testavimas
-- Failo nuskaitymo laikas: 0.0503948 s
-- Studentu dalinimo i dvi grupes laikas: 0.0180608 s
-- Surusiuotu studentu isvedimas i naujus failus uztruko: 0.0032375 s
--------------------------
--------------------------
-100000 irasu testavimas
-- Failo nuskaitymo laikas: 0.489797 s
-- Studentu dalinimo i dvi grupes laikas: 0.173178 s
-- Surusiuotu studentu isvedimas i naujus failus uztruko: 0.0204416 s
--------------------------
--------------------------
-1000000 irasu testavimas
-- Failo nuskaitymo laikas: 4.10158 s
-- Studentu dalinimo i dvi grupes laikas: 2.22148 s
-- Surusiuotu studentu isvedimas i naujus failus uztruko: 0.21376 s
--------------------------
--------------------------
-1000000 irasu testavimas
-- Failo nuskaitymo laikas: 4.10158 s
-- Studentu dalinimo i dvi grupes laikas: 2.22148 s
-- Surusiuotu studentu isvedimas i naujus failus uztruko: 0.21376 s
--------------------------
