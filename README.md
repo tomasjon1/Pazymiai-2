@@ -21,17 +21,15 @@ Norint pasinaudoti šia programa, Jums reikia įsijungti terminal. Su komanda cd
 
 -------------------------
 1000 irasu testavimas
-Failo generavimo laikas: 0.0090721 s
-Studentu dalinimo i dvi grupes laikas: 0.0009283 s
-Surusiuotu studentu isvedimas i naujus failus uztruko: 0.0265609 s
-Visos programos veikimo laikas: 12.5268 s
+Failo nuskaitymo laikas: 0.0170497 s
+Studentu dalinimo i dvi grupes laikas: 0.0013448 s
+Surusiuotu studentu isvedimas i naujus failus uztruko: 0.110706 s
 -------------------------
 -------------------------
 10000 irasu testavimas
-Failo generavimo laikas: 0.0208313 s
-Studentu dalinimo i dvi grupes laikas: 0.0044929 s
-Surusiuotu studentu isvedimas i naujus failus uztruko: 0.0224853 s
-Visos programos veikimo laikas: 6.23675 s
+Failo nuskaitymo laikas: 0.0573852 s
+Studentu dalinimo i dvi grupes laikas: 0.0049649 s
+Surusiuotu studentu isvedimas i naujus failus uztruko: 0.0395351 s
 -------------------------
 -------------------------
 100000 irasu testavimas
@@ -40,16 +38,14 @@ Studentu dalinimo i dvi grupes laikas: 0.0965414 s
 Surusiuotu studentu isvedimas i naujus failus uztruko: 0.182653 s
 -------------------------
 -------------------------
-100000 irasu testavimas
-Failo generavimo laikas: 0.164239 s
-Studentu dalinimo i dvi grupes laikas: 0.0438312 s
-Surusiuotu studentu isvedimas i naujus failus uztruko: 0.159213 s
-Visos programos veikimo laikas: 7.61452 s
+1000000 irasu testavimas
+Failo nuskaitymo laikas: 3.8139 s
+Studentu dalinimo i dvi grupes laikas: 1.75111 s
+Surusiuotu studentu isvedimas i naujus failus uztruko: 4.24782 s
 -------------------------
 -------------------------
 10000000 irasu testavimas
-Failo generavimo laikas: 16.7132 s
-Studentu dalinimo i dvi grupes laikas: 6.11869 s
-Surusiuotu studentu isvedimas i naujus failus uztruko: 15.3828 s
-Visos programos veikimo laikas: 103.824 s
+Failo nuskaitymo laikas: 62.4652 s
+Studentu dalinimo i dvi grupes laikas: 11.5866 s
+Surusiuotu studentu isvedimas i naujus failus uztruko: 16.2664 s
 -------------------------
