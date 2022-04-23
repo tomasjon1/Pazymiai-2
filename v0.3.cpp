@@ -39,6 +39,9 @@ int main()
 
         cout << "Ar notire studentu duomenis sugeneruoti (taip/ne): ";
         atsFailoGeneravimas = atsakymoIvedinimoPatikrinimas();
+        cout << "Kokia strategija norite naudoti? Jei taupyti laika iveskite 1 (1 strategija), jei taupyti atminti iveskite 2 (2 strategija)." << endl;
+        int strategijosRez = ivestoSkaiciausPatikrinimas();
+
         if (atsFailoGeneravimas == "taip")
         {
 
@@ -86,16 +89,29 @@ int main()
         studentai.sort([](const studentas &a, const studentas &b)
                        { return a.vardas < b.vardas; });
 
-        auto sortStart = hrClock::now();
-        list<studentas> kietiakai;
         list<studentas> vargsai;
-        sortStudents(kietiakai, vargsai, studentai);
-        cout << "Studentu dalinimo i dvi grupes laikas: " << durationDouble(hrClock::now() - sortStart).count() << " s" << endl;
 
-        auto newWrite = hrClock::now();
-        listToFile("kietiakai.txt", kietiakai);
-        listToFile("vargsai.txt", vargsai);
-        cout << "Surusiuotu studentu isvedimas i naujus failus uztruko: " << durationDouble(hrClock::now() - newWrite).count() << " s" << endl;
+        if (strategijosRez = 1)
+        {
+            list<studentas> kietiakai;
+            auto sortStart = hrClock::now();
+            sortStudents(kietiakai, vargsai, studentai);
+            cout << "Studentu dalinimo i dvi grupes laikas: " << durationDouble(hrClock::now() - sortStart).count() << " s" << endl;
+            auto newWrite = hrClock::now();
+            listToFile("kietiakai.txt", kietiakai);
+            listToFile("vargsai.txt", vargsai);
+            cout << "Surusiuotu studentu isvedimas i naujus failus uztruko: " << durationDouble(hrClock::now() - newWrite).count() << " s" << endl;
+        }
+        else
+        {
+            auto sortStart = hrClock::now();
+            sortStudents2(studentai, vargsai);
+            cout << "Studentu dalinimo i dvi grupes laikas: " << durationDouble(hrClock::now() - sortStart).count() << " s" << endl;
+            auto newWrite = hrClock::now();
+            listToFile("kietiakai.txt", studentai);
+            listToFile("vargsai.txt", vargsai);
+            cout << "Surusiuotu studentu isvedimas i naujus failus uztruko: " << durationDouble(hrClock::now() - newWrite).count() << " s" << endl;
+        }
     }
     else
     {

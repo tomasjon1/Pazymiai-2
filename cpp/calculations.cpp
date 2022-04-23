@@ -32,3 +32,16 @@ void sortStudents(list<studentas> &kietiakai, list<studentas> &vargsai, list<stu
     }
     studentai.clear();
 }
+
+bool isVargsas(studentas a)
+{
+    if (a.rezultatasMed < 5 || a.rezultatasVid < 5)
+        return true;
+    return false;
+}
+
+void sortStudents2(list<studentas> &kietiakai, list<studentas> &vargsai)
+{
+    copy_if(kietiakai.begin(), kietiakai.end(), back_inserter(vargsai), isVargsas);
+    kietiakai.erase(remove_if(kietiakai.begin(), kietiakai.end(), isVargsas), kietiakai.end());
+}
