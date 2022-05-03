@@ -1,12 +1,9 @@
 ﻿#include "headers/data.h"
-
-#include <chrono>
-
-using namespace std;
-using hrClock = std::chrono::high_resolution_clock;
-using durationDouble = std::chrono::duration<double>;
+#include "headers/Application.h"
 
 int main()
 {
-    vector<Studentas> studentai;
+    Application app;
+    app.run();
+    return 0;
 }

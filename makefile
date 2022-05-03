@@ -1,5 +1,5 @@
 main: main.o
-	g++ -o main v0.3.cpp calculations.o generation.o InputAndOutput.o validation.o
+	g++ -o main v0.3.cpp *.o -O3
 main.o :
 	g++ -c cpp/*.cpp 
 clean :

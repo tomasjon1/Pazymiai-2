@@ -1,7 +1,11 @@
 #include "../headers/data.h"
 
+Studentas::Studentas() {}
+
 void Studentas::setFirstName(string firstName) { vardas = firstName; }
+void Studentas::setFirstName(std::istream &name) { name >> vardas; }
 void Studentas::setlastName(string lastName) { pavarde = lastName; }
+void Studentas::setlastName(std::istream &name) { name >> vardas; }
 void Studentas::sethomeWork(int homeWork) { pazymiai.push_back(homeWork); }
 void Studentas::sethomeWorkAmount(int homeWorkAmount) { pazymiuKiekis = homeWorkAmount; }
 void Studentas::setexam(int exam) { egzaminas = exam; }
@@ -14,6 +18,7 @@ vector<int> Studentas::getHomeWork() { return pazymiai; }
 int Studentas::getHomeWorkAmount() { return pazymiuKiekis; }
 double Studentas::getExam() { return egzaminas; }
 double Studentas::getVid() { return rezultatasVid; }
+
 double Studentas::getMed() { return rezultatasMed; }
 
 void Studentas::calculateAvarage()

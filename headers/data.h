@@ -42,14 +42,17 @@ private:
     double rezultatasMed = 0;
 
 public:
-    Studentas(string firstName, string lastName);
+    Studentas();
 
     void setFirstName(string firstName);
+    void setFirstName(std::istream &name);
     void setlastName(string lastName);
+    void setlastName(std::istream &name);
     void sethomeWork(int homeWork);
     void sethomeWorkAmount(int homeWorkAmount);
     void setexam(int exam);
-    void setrez(double rez);
+    void setVid(double vid);
+    void setmed(double med);
 
     string getFirstName();
     string getlastName();
