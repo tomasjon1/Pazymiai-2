@@ -10,18 +10,17 @@
 #include <string>
 #include <list>
 
-
-using std::cout;
 using std::cin;
+using std::cout;
 using std::endl;
+using std::ifstream;
+using std::list;
+using std::ofstream;
 using std::string;
 using std::vector;
-using std::ifstream;
-using std::ofstream;
-using std::list;
 
-
-struct studentas {
+struct studentas
+{
     string vardas = "";
     string pavarde = "";
     vector<int> pazymiai;
@@ -29,4 +28,38 @@ struct studentas {
     int egzaminas;
     double rezultatasVid = 0;
     double rezultatasMed = 0;
+};
+
+class Studentas
+{
+private:
+    string vardas;
+    string pavarde;
+    vector<int> pazymiai;
+    int pazymiuKiekis = 0;
+    int egzaminas;
+    double rezultatasVid = 0;
+    double rezultatasMed = 0;
+
+public:
+    Studentas(string firstName, string lastName);
+
+    void setFirstName(string firstName);
+    void setlastName(string lastName);
+    void sethomeWork(int homeWork);
+    void sethomeWorkAmount(int homeWorkAmount);
+    void setexam(int exam);
+    void setrez(double rez);
+
+    string getFirstName();
+    string getlastName();
+    int getHomeWorkAmount();
+    vector<int> getHomeWork();
+    double getExam();
+    double getVid();
+    double getMed();
+
+    void calculateMedian();
+    void calculateAvarage();
+    void calculateRez();
 };
