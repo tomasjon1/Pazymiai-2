@@ -1,4 +1,4 @@
-#include "../headers/Application.h"
+#include "../headers/application.h"
 
 Application::Application(/* args */)
 {
@@ -11,11 +11,9 @@ Application::~Application()
 void Application::run()
 {
     cout << "Ar studentu skaicius yra zinomas (taip/ne): ";
-    // atsStudentuSkaicius = atsakymoIvedinimoPatikrinimas();
-    cin >> atsStudentuSkaicius;
+    atsStudentuSkaicius = atsakymoIvedinimoPatikrinimas();
     cout << "Ar notire namu darbu pazymius generuoti automatiskai (taip/ne): ";
-    // atsGeneravimas = atsakymoIvedinimoPatikrinimas();
-    cin >> atsGeneravimas;
+    atsGeneravimas = atsakymoIvedinimoPatikrinimas();
     cout << endl;
 
     if (atsStudentuSkaicius == "taip")
@@ -37,8 +35,7 @@ void Application::run()
     if (studentuSkaicius)
     {
         cout << "Iveskite studentu kieki: ";
-        // studentuKiekis = ivestoSkaiciausPatikrinimas();
-        cin >> studentuKiekis;
+        studentuKiekis = ivestoSkaiciausPatikrinimas();
         for (int x = 0; x < studentuKiekis; x++)
         {
             Studentas temp;
@@ -55,8 +52,7 @@ void Application::run()
             ivedimas(temp, generavimas);
             studentai.push_back(temp);
             cout << "Ar notire ivesti dar studenta (taip/ne): ";
-            // ats = atsakymoIvedinimoPatikrinimas();
-            cin >> ats;
+            ats = atsakymoIvedinimoPatikrinimas();
             if (ats == "ne")
                 break;
         }
@@ -72,21 +68,26 @@ void Application::ivedimas(Studentas &temp, bool generavimas)
     temp.setFirstName(cin);
 
     cout << "Iveskite studento namu darbu kieki: ";
-    // data.pazymiuKiekis = ivestoSkaiciausPatikrinimas();
-    int a;
-    cin >> a;
-    temp.sethomeWorkAmount(a);
+    temp.sethomeWorkAmount(ivestoSkaiciausPatikrinimas());
     cout << endl;
+
+    int a;
 
     for (int x = 0; x < temp.getHomeWorkAmount(); x++)
     {
         cout << "Iveskite " << x + 1 << " -a(-i) pazymi: ";
-        // temp.pazymiai.push_back(ivestiPazymi());
-        cin >> a;
-        temp.sethomeWork(a);
+        temp.sethomeWork(ivestiPazymi());
     }
     cout << "iveskite studento egzamino pazymi: ";
-    // data.egzaminas = ivestiPazymi();
-    cin >> a;
-    temp.setexam(a);
+    temp.setExam(ivestiPazymi());
+}
+
+int Application::ivestiPazymi()
+{
+    while (true)
+    {
+        int paz = ivestoSkaiciausPatikrinimas();
+        if (pazymioPatikrinimas(paz))
+            return paz;
+    }
 }

@@ -50,7 +50,7 @@ public:
     void setlastName(std::istream &name);
     void sethomeWork(int homeWork);
     void sethomeWorkAmount(int homeWorkAmount);
-    void setexam(int exam);
+    void setExam(int exam);
     void setVid(double vid);
     void setmed(double med);
 

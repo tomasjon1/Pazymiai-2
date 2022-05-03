@@ -8,7 +8,7 @@ void Studentas::setlastName(string lastName) { pavarde = lastName; }
 void Studentas::setlastName(std::istream &name) { name >> vardas; }
 void Studentas::sethomeWork(int homeWork) { pazymiai.push_back(homeWork); }
 void Studentas::sethomeWorkAmount(int homeWorkAmount) { pazymiuKiekis = homeWorkAmount; }
-void Studentas::setexam(int exam) { egzaminas = exam; }
+void Studentas::setExam(int exam) { egzaminas = exam; }
 void Studentas::setVid(double vid) { rezultatasVid = vid; }
 void Studentas::setmed(double med) { rezultatasMed = med; }
 
