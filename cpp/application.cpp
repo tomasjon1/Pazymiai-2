@@ -1,6 +1,6 @@
 #include "../headers/application.h"
 
-Application::Application(/* args */)
+Application::Application()
 {
 }
 
@@ -71,15 +71,27 @@ void Application::ivedimas(Studentas &temp, bool generavimas)
     temp.sethomeWorkAmount(ivestoSkaiciausPatikrinimas());
     cout << endl;
 
-    int a;
-
-    for (int x = 0; x < temp.getHomeWorkAmount(); x++)
+    if (generavimas)
     {
-        cout << "Iveskite " << x + 1 << " -a(-i) pazymi: ";
-        temp.sethomeWork(ivestiPazymi());
+        for (int x = 0; x < temp.getHomeWorkAmount(); x++)
+        {
+            temp.sethomeWork(rand() % 10 + 1);
+            cout << "Ivestas " << x + 1 << " pazymyss bus: " << temp.getHomeWork()[x] << endl;
+        }
+        temp.setExam(rand() % 10 + 1);
+        cout << "Ivestas studento egzamino pazymys bus: " << temp.getExam() << endl;
     }
-    cout << "iveskite studento egzamino pazymi: ";
-    temp.setExam(ivestiPazymi());
+    else
+    {
+        for (int x = 0; x < temp.getHomeWorkAmount(); x++)
+        {
+            cout << "Iveskite " << x + 1 << " -a(-i) pazymi: ";
+            temp.sethomeWork(ivestiPazymi());
+        }
+        cout << "iveskite studento egzamino pazymi: ";
+        temp.setExam(ivestiPazymi());
+    }
+    cout << endl;
 }
 
 int Application::ivestiPazymi()
