@@ -57,3 +57,6 @@ public:
     void calculateAvarage();
     void calculateRez();
 };
+
+bool compare(Studentas &a, Studentas &b);
+bool isVargsas(Studentas &a);

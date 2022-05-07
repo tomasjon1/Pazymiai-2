@@ -1,11 +1,1 @@
 Vardas              Pavarde             Galutinis (Vid.)    Galutinis (Med.)    
-Aidas               Urbonas             1.86667             4.5                 
-Skalmantas          Kateiva             2.13333             6.5                 
-Skirgaila           Kateiva             2.53333             6.5                 
-Damijonas           Urbonas             2                   5                   
-Juljanas            Jankauskas          1.93333             3                   
-Zygfridas           Urbonas             2.26667             5.5                 
-Aistis              Vasiliauskas        2.06667             4                   
-Sebastijonas        Pocius              1.66667             3                   
-Georgijus           Kateiva             1.66667             4.5                 
-Bronislovas         Baranauskas         1.93333             4.5                 

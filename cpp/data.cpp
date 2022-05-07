@@ -29,14 +29,13 @@ int Studentas::getAndPopLastMark()
 
 void Studentas::calculateAvarage()
 {
-    double sum = 0;
+    rezultatasVid = 0;
     for (auto &el : pazymiai)
-        sum += el;
+    {
+        rezultatasVid += el;
+    }
 
-    if (pazymiai.size() != 0)
-        rezultatasVid = sum / (pazymiai.size() * 1.0) * 0.4 + rezultatasVid * 0.6;
-    else
-        rezultatasVid = rezultatasVid * 0.6;
+    rezultatasVid = (0.4 * (rezultatasVid / pazymiai.size())) + 0.6 * egzaminas;
 }
 
 void Studentas::calculateMedian()
@@ -61,4 +60,16 @@ void Studentas::calculateRez()
 {
     calculateAvarage();
     calculateMedian();
+}
+
+bool compare(Studentas &a, Studentas &b)
+{
+    return a.getFirstName() < b.getFirstName();
+}
+
+bool isVargsas(Studentas &a)
+{
+    if (a.getMed() < 5 || a.getVid() < 5)
+        return true;
+    return false;
 }

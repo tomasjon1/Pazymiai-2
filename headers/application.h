@@ -33,6 +33,11 @@ public:
 private:
     void ivedimas(Studentas &temp, bool generavimas);
     int ivestiPazymi();
+
     void bufer_read(vector<Studentas> &studentai, string file_name);
     void bufer_write(vector<Studentas> &studentai);
+
+    void sortStudents(vector<Studentas> &kietiakai, vector<Studentas> &vargsai, vector<Studentas> &students);
+    void sortStudents2(vector<Studentas> &kietiakai, vector<Studentas> &vargsai);
+    void dataToFile(string file_name, vector<Studentas> &data);
 };
