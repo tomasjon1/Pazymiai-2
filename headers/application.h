@@ -14,9 +14,13 @@ private:
     string atsStudentuSkaicius;
     string atsGeneravimas;
     string atsFailoSkaitymas;
+    string atsFailoGeneravimas;
     bool generavimas = false;
     bool studentuSkaicius = false;
     bool failoSkaitymas = false;
+    bool failoGeneravimas = false;
+
+    string genFile_name;
 
     vector<Studentas> studentai;
 

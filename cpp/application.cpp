@@ -10,24 +10,44 @@ Application::~Application()
 
 void Application::run()
 {
-    // vector<Studentas> studentai;
-
     cout << "Ar notire studentus nuskaityti is failo (taip/ne): ";
     atsFailoSkaitymas = atsakymoIvedinimoPatikrinimas();
 
     if (atsFailoSkaitymas == "taip")
     {
-        try
+
+        cout << "Ar notire studentu duomenis sugeneruoti (taip/ne): ";
+        atsFailoGeneravimas = atsakymoIvedinimoPatikrinimas();
+
+        if (atsFailoGeneravimas == "taip")
         {
-            cout << "iveskite fialo pavadinima ";
-            string pav;
-            cin >> pav;
-            pav = pav + ".txt";
-            bufer_read(studentai, pav);
+            cin.ignore();
+            cout << "Koks turetu buti failo pavadinimas?(studentai.txt by default): ";
+            getline(cin, genFile_name);
+            genFile_name.empty() ? genFile_name = "studentai1.txt" : genFile_name += ".txt";
+            cout << "Kiek generuoti studentu?" << endl;
+            int studCount;
+            studCount = ivestoSkaiciausPatikrinimas();
+            cout << "Kiek generuoti namu darbu?" << endl;
+            int ndCount;
+            ndCount = ivestoSkaiciausPatikrinimas();
+            genFile(studCount, genFile_name, ndCount);
+            bufer_read(studentai, genFile_name);
         }
-        catch (std::exception &e)
+        else
         {
-            cout << "Failas nerastas" << endl;
+            try
+            {
+                cout << "iveskite fialo pavadinima ";
+                string pav;
+                cin >> pav;
+                pav = pav + ".txt";
+                bufer_read(studentai, pav);
+            }
+            catch (std::exception &e)
+            {
+                cout << "Failas nerastas" << endl;
+            }
         }
     }
     else
@@ -81,22 +101,12 @@ void Application::run()
         }
     }
 
-    cout << "PRADEDAMAS SKAICIAVIMAS" << endl;
     for (auto &stud : studentai)
     {
-        cout << "PRADEDAMAS SKAICIAVIMAS " << stud.getFirstName() << endl;
         stud.calculateRez();
         cout << stud.getVid() << " " << stud.getMed() << endl;
     }
 
-    cout << "PRADEDAMAS PATIKRINIMAS" << endl;
-    for (auto &stud : studentai)
-    {
-        cout << stud.getFirstName() << endl;
-        cout << stud.getVid() << " " << stud.getMed() << endl;
-    }
-
-    cout << "PRADEDAMAS ISVEDIMAS" << endl;
     bufer_write(studentai);
 }
 
