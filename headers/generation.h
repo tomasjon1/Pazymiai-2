@@ -25,6 +25,7 @@ public:
 
     void genFile(int size, string file_name, int ndCount);
     std::stringstream genStudentString(int ndCount);
+
     int randomInt(int from, int to);
     string randFirstName();
     string randLastName();

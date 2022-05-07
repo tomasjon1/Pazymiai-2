@@ -21,6 +21,9 @@ void Application::run()
 
         if (atsFailoGeneravimas == "taip")
         {
+
+            Generator generator;
+
             cin.ignore();
             cout << "Koks turetu buti failo pavadinimas?(studentai.txt by default): ";
             getline(cin, genFile_name);
@@ -31,7 +34,7 @@ void Application::run()
             cout << "Kiek generuoti namu darbu?" << endl;
             int ndCount;
             ndCount = ivestoSkaiciausPatikrinimas();
-            genFile(studCount, genFile_name, ndCount);
+            generator.genFile(studCount, genFile_name, ndCount);
             bufer_read(studentai, genFile_name);
         }
         else

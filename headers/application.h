@@ -2,6 +2,7 @@
 
 #include "data.h"
 #include "validation.h"
+#include "generation.h"
 
 #include <vector>
 
