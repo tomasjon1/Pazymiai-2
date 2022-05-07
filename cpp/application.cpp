@@ -10,53 +10,94 @@ Application::~Application()
 
 void Application::run()
 {
-    cout << "Ar studentu skaicius yra zinomas (taip/ne): ";
-    atsStudentuSkaicius = atsakymoIvedinimoPatikrinimas();
-    cout << "Ar notire namu darbu pazymius generuoti automatiskai (taip/ne): ";
-    atsGeneravimas = atsakymoIvedinimoPatikrinimas();
-    cout << endl;
+    // vector<Studentas> studentai;
 
-    if (atsStudentuSkaicius == "taip")
-    {
-        cout << "Studentu skaicius yra zinomas" << endl;
-        studentuSkaicius = true;
-    }
-    else
-        cout << "Studentu skaicius yra nezinomas" << endl;
+    cout << "Ar notire studentus nuskaityti is failo (taip/ne): ";
+    atsFailoSkaitymas = atsakymoIvedinimoPatikrinimas();
 
-    if (atsGeneravimas == "taip")
+    if (atsFailoSkaitymas == "taip")
     {
-        cout << "Namu darbu pazymiai bus genereruojami" << endl;
-        generavimas = true;
-    }
-    else
-        cout << "Namudarbu pazymiai nebus genereruojami" << endl;
-
-    if (studentuSkaicius)
-    {
-        cout << "Iveskite studentu kieki: ";
-        studentuKiekis = ivestoSkaiciausPatikrinimas();
-        for (int x = 0; x < studentuKiekis; x++)
+        try
         {
-            Studentas temp;
-            ivedimas(temp, generavimas);
-            studentai.push_back(temp);
+            cout << "iveskite fialo pavadinima ";
+            string pav;
+            cin >> pav;
+            pav = pav + ".txt";
+            bufer_read(studentai, pav);
+        }
+        catch (std::exception &e)
+        {
+            cout << "Failas nerastas" << endl;
         }
     }
     else
     {
-        string ats;
-        while (true)
+        cout << "Ar studentu skaicius yra zinomas (taip/ne): ";
+        atsStudentuSkaicius = atsakymoIvedinimoPatikrinimas();
+        cout << "Ar notire namu darbu pazymius generuoti automatiskai (taip/ne): ";
+        atsGeneravimas = atsakymoIvedinimoPatikrinimas();
+        cout << endl;
+
+        if (atsStudentuSkaicius == "taip")
         {
-            Studentas temp;
-            ivedimas(temp, generavimas);
-            studentai.push_back(temp);
-            cout << "Ar notire ivesti dar studenta (taip/ne): ";
-            ats = atsakymoIvedinimoPatikrinimas();
-            if (ats == "ne")
-                break;
+            cout << "Studentu skaicius yra zinomas" << endl;
+            studentuSkaicius = true;
+        }
+        else
+            cout << "Studentu skaicius yra nezinomas" << endl;
+
+        if (atsGeneravimas == "taip")
+        {
+            cout << "Namu darbu pazymiai bus genereruojami" << endl;
+            generavimas = true;
+        }
+        else
+            cout << "Namudarbu pazymiai nebus genereruojami" << endl;
+
+        if (studentuSkaicius)
+        {
+            cout << "Iveskite studentu kieki: ";
+            studentuKiekis = ivestoSkaiciausPatikrinimas();
+            for (int x = 0; x < studentuKiekis; x++)
+            {
+                Studentas temp;
+                ivedimas(temp, generavimas);
+                studentai.push_back(temp);
+            }
+        }
+        else
+        {
+            string ats;
+            while (true)
+            {
+                Studentas temp;
+                ivedimas(temp, generavimas);
+                studentai.push_back(temp);
+                cout << "Ar notire ivesti dar studenta (taip/ne): ";
+                ats = atsakymoIvedinimoPatikrinimas();
+                if (ats == "ne")
+                    break;
+            }
         }
     }
+
+    cout << "PRADEDAMAS SKAICIAVIMAS" << endl;
+    for (auto &stud : studentai)
+    {
+        cout << "PRADEDAMAS SKAICIAVIMAS " << stud.getFirstName() << endl;
+        stud.calculateRez();
+        cout << stud.getVid() << " " << stud.getMed() << endl;
+    }
+
+    cout << "PRADEDAMAS PATIKRINIMAS" << endl;
+    for (auto &stud : studentai)
+    {
+        cout << stud.getFirstName() << endl;
+        cout << stud.getVid() << " " << stud.getMed() << endl;
+    }
+
+    cout << "PRADEDAMAS ISVEDIMAS" << endl;
+    bufer_write(studentai);
 }
 
 void Application::ivedimas(Studentas &temp, bool generavimas)
@@ -102,4 +143,67 @@ int Application::ivestiPazymi()
         if (pazymioPatikrinimas(paz))
             return paz;
     }
+}
+
+void Application::bufer_read(vector<Studentas> &studentai, string file_name)
+{
+    std::string line;
+    std::stringstream buffer;
+
+    std::ifstream open_f(file_name);
+
+    buffer << open_f.rdbuf();
+    open_f.close();
+    std::getline(buffer, line);
+
+    while (buffer)
+    {
+        std::getline(buffer, line);
+        if (line.length() == 0)
+            break;
+        Studentas t;
+        std::istringstream lineStream(line);
+        string s;
+        lineStream >> s;
+        t.setFirstName(s);
+        lineStream >> s;
+        t.setlastName(s);
+        int mark;
+        while (lineStream >> mark)
+        {
+            t.sethomeWork(mark);
+        }
+        t.getAndPopLastMark();
+        studentai.push_back(t);
+    }
+}
+
+void Application::bufer_write(vector<Studentas> &studentai)
+{
+
+    std::stringstream outputas;
+    outputas << std::left << std::setw(20) << "Vardas";
+    outputas << std::left << std::setw(20) << "Pavarde";
+    outputas << std::left << std::setw(20) << "Galutinis (Vid.)";
+    outputas << std::left << std::setw(20) << "Galutinis (Med.)";
+    outputas << endl;
+
+    for (auto &stud : studentai)
+    {
+
+        outputas << std::left << std::setw(20) << stud.getFirstName();
+        cout << stud.getFirstName() << " ";
+        outputas << std::left << std::setw(20) << stud.getlastName();
+        cout << stud.getlastName() << " ";
+        outputas << std::left << std::setw(20) << stud.getVid();
+        cout << stud.getVid() << " ";
+        outputas << std::left << std::setw(20) << stud.getMed();
+        cout << stud.getMed() << endl;
+        outputas << endl;
+    }
+
+    studentai.clear();
+    std::ofstream out_f("rez.txt");
+    out_f << outputas.rdbuf();
+    out_f.close();
 }

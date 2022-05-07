@@ -18,8 +18,14 @@ vector<int> Studentas::getHomeWork() { return pazymiai; }
 int Studentas::getHomeWorkAmount() { return pazymiuKiekis; }
 double Studentas::getExam() { return egzaminas; }
 double Studentas::getVid() { return rezultatasVid; }
-
 double Studentas::getMed() { return rezultatasMed; }
+
+int Studentas::getAndPopLastMark()
+{
+    int t = pazymiai.back();
+    pazymiai.pop_back();
+    return t;
+}
 
 void Studentas::calculateAvarage()
 {

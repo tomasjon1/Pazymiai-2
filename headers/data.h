@@ -19,17 +19,6 @@ using std::ofstream;
 using std::string;
 using std::vector;
 
-struct studentas
-{
-    string vardas = "";
-    string pavarde = "";
-    vector<int> pazymiai;
-    int pazymiuKiekis = 0;
-    int egzaminas;
-    double rezultatasVid = 0;
-    double rezultatasMed = 0;
-};
-
 class Studentas
 {
 private:
@@ -61,6 +50,8 @@ public:
     double getExam();
     double getVid();
     double getMed();
+
+    int getAndPopLastMark();
 
     void calculateMedian();
     void calculateAvarage();

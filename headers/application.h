@@ -13,8 +13,10 @@ private:
     int studentuKiekis = 0;
     string atsStudentuSkaicius;
     string atsGeneravimas;
+    string atsFailoSkaitymas;
     bool generavimas = false;
     bool studentuSkaicius = false;
+    bool failoSkaitymas = false;
 
     vector<Studentas> studentai;
 
@@ -26,4 +28,6 @@ public:
 private:
     void ivedimas(Studentas &temp, bool generavimas);
     int ivestiPazymi();
+    void bufer_read(vector<Studentas> &studentai, string file_name);
+    void bufer_write(vector<Studentas> &studentai);
 };
