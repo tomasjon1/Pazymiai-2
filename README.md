@@ -1,41 +1,51 @@
-## V1.2
+```
+
+```
+
+# Programa skirta studentų pažymių vidurkiui ir medianai apskaičiuoti.
 
 ### Kaip paleisti programą?<br>
-Versijoje [v1.2](https://github.com/tomasjon1/Pazymiai-2/tree/v1.2):
-- Jums reikia įsijungti terminal.
-- Su komanda cd nueiti iki savo v0.3.cpp failo. 
-- Įrašyti `MinGW32-make`komandą.
-- Įrašyti `main.cpp` arba `./main`.
+Versijoje [v0.1.1](https://github.com/domastyd/Pazymys/blob/v0.1/v0.1.1.cpp) yra naudojami C tipo masyvai. Tačiau, rekomenduojama naudoti programos [v0.1.2](https://github.com/domastyd/Pazymys/blob/v0.1/v0.1.2.cpp) versiją. Joje yra naudojami vector tipo konteineriai, kurie paspartina programos veiklą. 
+Norint pasinaudoti šia programa, Jums reikia įsijungti terminal. Su komanda cd nueiti iki savo v0.1.2.cpp failo ir įrašyti "g++ -o main v0.1.2.cpp" komandą ir kai programa bus sukompiliuota, įrašyti "main.cpp" arba "./main".
 
 ### Paleidus programą Jums reikės:<br>
-- Pasirinkti ar norite skaityti is failo.
-  - Pasirinkti ar norite sugeneruoti norima duomenų faila, su norimu studentu dydžiu bei pazymiu kiekiu.
-  - Arba ivesti failo pavadinima.
-- Kitu atveju: 
-  - Pasirinkti ar studentų skaičius yra fiksuotas, su galimybė nutraukti studentų   duomenų suvedimą.
-  - Pasirinkti ar norite matyti automatiškai sugeneruotus duomenis, turėsite įvesti studentų vardus ir pavardes bei namų darbų kiekį vienam studentui.
-  - Pasirinkus įvesti duomenis patiems, turėsite įvesti šįuos duomenis: studentų vardus, pavardes, jų namų darbų kiekį, pažymius ir egzamino pažymį).
+- Pasirinkti ar norite matyti studentų pažymių medianas.
+- Pasirinkti ar studentų skaičius yra fiksuotas, su galimybė nutraukti studentų duomenų suvedimą.
+- Pasirinkti ar norite matyti automatiškai sugeneruotus duomenis, turėsite įvesti studentų vardus ir pavardes bei namų darbų kiekį vienam studentui.
+- Pasirinkus įvesti duomenis patiems, turėsite įvesti šįuos duomenis: studentų vardus, pavardes, jų namų darbų kiekį, pažymius ir egzamino pažymį).
 
-### Pasirinkus skaityma is failo
-- Studentai bus surasyti i 2 skirtingus failus: Vargsiukai.txt ir Kietekai.txt
+(Pažymių vidurkis sudaromis vadovaujantis šia formule: galutinis = 0.4 * vidurkis + 0.6 * egzaminas)<br>
+(Pažymių mediana sudaroma vadovaujantis šia formule: mediana = 0.4 * pažymių mediana + 0.6 * egzaminas)<br>
 
-### Pasirinkus duomenu ivedima ranka
-- Matysite sudarytą lentelę su studentu pavardėmis, vardais ir pažymių vidurkiais ir medianomis "rez.txt" faile.
+### Pasirinkus šiuos nustatymus matysite sudarytą lentelę su studentu pavardėmis, vardais ir pažymių vidurkiais ir/arba medianomis.
 
-## PC stats
-- CPU Intel Core i7-8750H
-- RAM 16
-- SSD 500GB
-
-## Sturct vs Class (vector), Strategija 2 - skaidymas i grupes+
-| Tipas  | 1000000 | 10000000 | 
-| ------------- | ------------- | ------------- |
-| Sturct  | 1.072736  | 9.413181  | 
-| Class  | 0.583145 | 5.47949 | 
-
-
-| Tipas  | 1000  | 10000 | 100000  | 1000000  | 10000000 | 
-| ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
-| O1  | 0.0147449 | 0.100956  | 0.584785 | 5.61137 | 57.8394  | 
-| O2  | 0.0132218 | 0.100368 | 0.55616  | 5.52116  | 58.4422 | 
-| O3  | 0.0134734 | 0.10079 | 0.558621  | 5.45973 | 58.3061 | 
+-------------------------
+1000 irasu testavimas
+Failo nuskaitymo laikas: 0.0170497 s
+Studentu dalinimo i dvi grupes laikas: 0.0013448 s
+Surusiuotu studentu isvedimas i naujus failus uztruko: 0.110706 s
+-------------------------
+-------------------------
+10000 irasu testavimas
+Failo nuskaitymo laikas: 0.0573852 s
+Studentu dalinimo i dvi grupes laikas: 0.0049649 s
+Surusiuotu studentu isvedimas i naujus failus uztruko: 0.0395351 s
+-------------------------
+-------------------------
+100000 irasu testavimas
+Failo nuskaitymo laikas: 0.350059 s
+Studentu dalinimo i dvi grupes laikas: 0.0965414 s
+Surusiuotu studentu isvedimas i naujus failus uztruko: 0.182653 s
+-------------------------
+-------------------------
+1000000 irasu testavimas
+Failo nuskaitymo laikas: 3.8139 s
+Studentu dalinimo i dvi grupes laikas: 1.75111 s
+Surusiuotu studentu isvedimas i naujus failus uztruko: 4.24782 s
+-------------------------
+-------------------------
+10000000 irasu testavimas
+Failo nuskaitymo laikas: 62.4652 s
+Studentu dalinimo i dvi grupes laikas: 11.5866 s
+Surusiuotu studentu isvedimas i naujus failus uztruko: 16.2664 s
+-------------------------
