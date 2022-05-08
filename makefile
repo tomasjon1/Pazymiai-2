@@ -1,5 +1,5 @@
 main: main.o
-	g++ -o main v0.3.cpp *.o -O3
+	g++ -o main v1.2.cpp *.o -O3
 main.o :
 	g++ -c cpp/*.cpp 
 clean :
