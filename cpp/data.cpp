@@ -1,6 +1,35 @@
 #include "../headers/data.h"
 
-Studentas::Studentas() {}
+Studentas::Studentas() : rezultatasVid(0), rezultatasMed(0) {}
+Studentas::~Studentas() { pazymiai.clear(); }
+Studentas::Studentas(const Studentas &s)
+{
+    this->vardas = s.vardas;
+    this->pavarde = s.pavarde;
+    this->pazymiai.reserve(s.pazymiai.size());
+    this->pazymiai.resize(s.pazymiai.size());
+    for (int i = 0; i < s.pazymiai.size(); i++)
+        this->pazymiai.at(i) = s.pazymiai[i];
+
+    this->egzaminas = s.egzaminas;
+    this->rezultatasVid = s.rezultatasVid;
+    this->rezultatasMed = s.rezultatasMed;
+}
+Studentas &Studentas::operator=(const Studentas &s)
+{
+    if (&s == this)
+        return *this;
+    vardas = s.vardas;
+    pavarde = s.pavarde;
+    this->pazymiai.reserve(s.pazymiai.size());
+    this->pazymiai.resize(s.pazymiai.size());
+    for (int i = 0; i < s.pazymiai.size(); i++)
+        pazymiai[i] = s.pazymiai[i];
+    egzaminas = s.egzaminas;
+    rezultatasVid = s.rezultatasVid;
+    rezultatasMed = s.rezultatasMed;
+    return *this;
+}
 
 void Studentas::setFirstName(string firstName) { vardas = firstName; }
 void Studentas::setFirstName(std::istream &name) { name >> vardas; }

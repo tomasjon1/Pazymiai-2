@@ -32,6 +32,9 @@ private:
 
 public:
     Studentas();
+    ~Studentas();
+    Studentas &operator=(const Studentas &s);
+    ~Studentas();
 
     void setFirstName(string firstName);
     void setFirstName(std::istream &name);
