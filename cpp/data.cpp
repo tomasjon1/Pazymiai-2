@@ -1,6 +1,13 @@
 #include "../headers/data.h"
 
 Studentas::Studentas() : rezultatasVid(0), rezultatasMed(0) {}
+Studentas::Studentas(string a, string b, double vid, double med)
+{
+    this->setFirstName(a);
+    this->setlastName(b);
+    this->setVid(vid);
+    this->setmed(med);
+}
 Studentas::~Studentas() { pazymiai.clear(); }
 Studentas::Studentas(const Studentas &s)
 {
@@ -21,7 +28,7 @@ Studentas &Studentas::operator=(const Studentas &s)
         return *this;
     vardas = s.vardas;
     pavarde = s.pavarde;
-    this->pazymiai.reserve(s.pazymiai.size());
+    pazymiai.reserve(s.pazymiai.size());
     this->pazymiai.resize(s.pazymiai.size());
     for (int i = 0; i < s.pazymiai.size(); i++)
         pazymiai[i] = s.pazymiai[i];
@@ -29,6 +36,16 @@ Studentas &Studentas::operator=(const Studentas &s)
     rezultatasVid = s.rezultatasVid;
     rezultatasMed = s.rezultatasMed;
     return *this;
+}
+
+bool Studentas::operator<(const Studentas &s)
+{
+    return rezultatasMed < s.rezultatasMed;
+}
+
+bool Studentas::operator>(const Studentas &s)
+{
+    return rezultatasMed > s.rezultatasMed;
 }
 
 void Studentas::setFirstName(string firstName) { vardas = firstName; }

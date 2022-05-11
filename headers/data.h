@@ -32,9 +32,13 @@ private:
 
 public:
     Studentas();
+    Studentas(string a, string b, double vid, double med);
     ~Studentas();
     Studentas &operator=(const Studentas &s);
-    ~Studentas();
+    bool operator<(const Studentas &s);
+    bool operator>(const Studentas &s);
+
+    Studentas(const Studentas &s);
 
     void setFirstName(string firstName);
     void setFirstName(std::istream &name);
