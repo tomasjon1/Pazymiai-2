@@ -1,6 +1,14 @@
 #include "../headers/validation.h"
 
-int ivestoSkaiciausPatikrinimas()
+Validator::Validator()
+{
+}
+
+Validator::~Validator()
+{
+}
+
+int Validator::ivestoSkaiciausPatikrinimas()
 {
     int n;
     while (true)
@@ -17,9 +25,11 @@ int ivestoSkaiciausPatikrinimas()
     }
 }
 
-string atsakymoIvedinimoPatikrinimas() {
+string Validator::atsakymoIvedinimoPatikrinimas()
+{
     string ats;
-    do {
+    do
+    {
         cin >> ats;
         if (ats != "taip" && ats != "ne")
         {
@@ -30,7 +40,7 @@ string atsakymoIvedinimoPatikrinimas() {
     return ats;
 }
 
-bool pazymioPatikrinimas(int paz)
+bool Validator::pazymioPatikrinimas(int paz)
 {
     if (paz > 0 && paz <= 10)
         return true;
