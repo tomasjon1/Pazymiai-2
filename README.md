@@ -442,6 +442,14 @@ Versijoje [v2.0](https://github.com/tomasjon1/Pazymiai-2/tree/v2.0):
 - Sukompiliuoti testus su `g++ test.cpp -o test`
 - Paleisti testams `test`
 
+### Susiinastaliuoti programa
+- Nueiti i programos aplankala - `setup 1-SetupFiles`
+- Ir paleisti `setup 1.msi`
+
+### Paleisti programa
+- Atsidaryti start
+- Paleisti `Pazymiai 2 final final`
+
 ### Paleidus programą Jums reikės:<br>
 - Pasirinkti ar norite skaityti is failo.
   - Pasirinkti ar norite sugeneruoti norima duomenų faila, su norimu studentu dydžiu bei pazymiu kiekiu.
